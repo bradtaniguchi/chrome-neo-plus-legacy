@@ -137,7 +137,8 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: config
-          path: dist/config.json
+          # should make config.json available
+          path: dist
       # DEBUG build
       - uses: actions/upload-artifact@v2
         with:
