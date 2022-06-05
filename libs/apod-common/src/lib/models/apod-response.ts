@@ -1,4 +1,7 @@
-export interface ApodInterface {
+/**
+ * Represents an APOD response from the API.
+ */
+export interface ApodResponse {
   /**
    * Copyright if image is not public domain
    */
