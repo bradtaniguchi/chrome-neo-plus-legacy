@@ -1,0 +1,40 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nivl-common/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/nivl-common",
+        "tsConfig": "libs/nivl-common/tsconfig.lib.json",
+        "packageJson": "libs/nivl-common/package.json",
+        "main": "libs/nivl-common/src/index.ts",
+        "assets": ["libs/nivl-common/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/nivl-common/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/nivl-common"],
+      "options": {
+        "jestConfig": "libs/nivl-common/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
+    "typedoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx typedoc libs/nivl-common/src/index.ts --tsconfig libs/nivl-common/tsconfig.json --out dist/docs/nivl-common"
+      }
+    }
+  },
+  "tags": []
+}

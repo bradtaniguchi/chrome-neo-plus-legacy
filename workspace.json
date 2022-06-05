@@ -2,11 +2,14 @@
   "$schema": "./node_modules/nx/schemas/workspace-schema.json",
   "version": 2,
   "projects": {
+    "apod-common": "libs/apod-common",
     "common": "libs/common",
     "common-react": "libs/common-react",
     "common-react-e2e": "apps/common-react-e2e",
     "internal-client": "apps/internal-client",
     "internal-client-e2e": "apps/internal-client-e2e",
+    "neows-common": "libs/neows-common",
+    "nivl-common": "libs/nivl-common",
     "storybook": "libs/storybook",
     "storybook-e2e": "apps/storybook-e2e"
   }
