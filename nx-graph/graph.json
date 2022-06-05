@@ -203,7 +203,7 @@
                   "namedChunks": false,
                   "extractLicenses": true,
                   "vendorChunk": false,
-                  "deployUrl": "/nx-template/"
+                  "deployUrl": "/chrome-neo-plus/"
                 }
               }
             },
@@ -271,7 +271,7 @@
             },
             {
               "file": "apps/internal-client/project.json",
-              "hash": "104d07628f33362f33a792484faec519a4d2699c"
+              "hash": "b55b56ab0b6af9578360edb0f52b7c1ed389ee01"
             },
             {
               "file": "apps/internal-client/proxy.conf.json",
@@ -291,7 +291,7 @@
             },
             {
               "file": "apps/internal-client/src/app/app.tsx",
-              "hash": "c0147c55b6c5d0f2ff0cdc03cd9a29241c0e9de8",
+              "hash": "02cc29296a456ed9e114d4375cb5949ccaa96fad",
               "deps": [
                 "npm:@mui/material",
                 "common-react",
@@ -313,7 +313,7 @@
             },
             {
               "file": "apps/internal-client/src/app/pages/dashboard-page/dashboard-page.tsx",
-              "hash": "8de8db29379b4b0cfa29fad8dc63a1ae46b897c5",
+              "hash": "ad5defeac6d3b78bdf0b20876bcad820fb3dbfdf",
               "deps": [
                 "npm:@mui/material",
                 "npm:@mui/icons-material",
@@ -586,7 +586,7 @@
             },
             {
               "file": "libs/common-react/package.json",
-              "hash": "2dd5d55d0b94246e35c02731745fcaab54edf696"
+              "hash": "ed719279901add78918764ca6e682e5347ae0276"
             },
             {
               "file": "libs/common-react/project.json",
@@ -854,7 +854,7 @@
             },
             {
               "file": "libs/storybook/package.json",
-              "hash": "e11efb1c82d82a7f137a0585c943452d65202408"
+              "hash": "1f030c64f2bf441f12bd8b21015a4b4936dfb101"
             },
             {
               "file": "libs/storybook/project.json",
@@ -974,7 +974,7 @@
             },
             {
               "file": "libs/common/package.json",
-              "hash": "36788b226c6c19d105c48c4e931beea1759afc5c"
+              "hash": "4e5232467c62a9b748b0ad85f65a3b2101117865"
             },
             {
               "file": "libs/common/project.json",
