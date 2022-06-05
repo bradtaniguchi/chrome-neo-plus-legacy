@@ -11,7 +11,7 @@ import {
   getProjectsByTarget,
   useConfig,
   useNxGraph,
-} from '@nx-template/common-react';
+} from '@chrome-neo-plus/common-react';
 import styles from './dashboard-page.module.scss';
 import { useMemo } from 'react';
 import CircularProgress from '@mui/material/CircularProgress';

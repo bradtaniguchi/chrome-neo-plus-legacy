@@ -1,7 +1,6 @@
 {
   "recommendations": [
     "aaron-bond.better-comments",
-    "Angular.ng-template",
     "christian-kohler.path-intellisense",
     "esbenp.prettier-vscode",
     "firsttris.vscode-jest-runner",

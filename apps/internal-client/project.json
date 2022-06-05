@@ -42,7 +42,7 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false,
-          "deployUrl": "/nx-template/"
+          "deployUrl": "/chrome-neo-plus/"
         }
       }
     },

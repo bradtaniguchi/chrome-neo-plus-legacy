@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import { HeaderBar } from '@nx-template/common-react';
+import { HeaderBar } from '@chrome-neo-plus/common-react';
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import DashboardPage from './pages/dashboard-page/dashboard-page';
