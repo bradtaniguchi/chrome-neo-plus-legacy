@@ -28,6 +28,12 @@
         "jestConfig": "libs/nivl-common/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "typedoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx typedoc libs/nivl-common/src/index.ts --tsconfig libs/nivl-common/tsconfig.json --out dist/docs/nivl-common"
+      }
     }
   },
   "tags": []
