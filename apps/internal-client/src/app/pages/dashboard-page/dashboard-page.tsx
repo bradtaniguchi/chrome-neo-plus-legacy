@@ -20,8 +20,12 @@ import CircularProgress from '@mui/material/CircularProgress';
 export interface DashboardPageProps {}
 
 export function DashboardPage(props: DashboardPageProps) {
-  const { config, configError, configLoading } = useConfig();
-  const { nxGraph, nxGraphError, nxGraphLoading } = useNxGraph();
+  const { config, configError, configLoading } = useConfig({
+    path: '/chrome-neo-plus/config.json',
+  });
+  const { nxGraph, nxGraphError, nxGraphLoading } = useNxGraph({
+    path: '/chrome-neo-plus/graph.json',
+  });
 
   const projects = useMemo(
     () =>

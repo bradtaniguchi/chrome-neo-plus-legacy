@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/chrome-neo-plus">
       <App />
     </BrowserRouter>
   </StrictMode>
