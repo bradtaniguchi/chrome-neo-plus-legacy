@@ -313,7 +313,7 @@
             },
             {
               "file": "apps/internal-client/src/app/pages/dashboard-page/dashboard-page.tsx",
-              "hash": "ad5defeac6d3b78bdf0b20876bcad820fb3dbfdf",
+              "hash": "0a326eeb23d91b3a448d143e2582973862e256c2",
               "deps": [
                 "npm:@mui/material",
                 "npm:@mui/icons-material",
@@ -361,7 +361,7 @@
             },
             {
               "file": "apps/internal-client/src/main.tsx",
-              "hash": "6ac32d4a77b475ce75829fc52b69e841bf65e241",
+              "hash": "c852631dd2aefae514f1db230b4fa32738027024",
               "deps": [
                 "npm:react",
                 "npm:react-dom",
