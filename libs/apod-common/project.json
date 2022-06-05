@@ -28,6 +28,12 @@
         "jestConfig": "libs/apod-common/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "typedoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx typedoc libs/apod-common/src/index.ts --tsconfig libs/apod-common/tsconfig.json --out dist/docs/apod-common"
+      }
     }
   },
   "tags": []
