@@ -1,1 +1,1 @@
-export * from './lib/neows-common';
+export * from './lib/models';
