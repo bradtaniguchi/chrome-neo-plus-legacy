@@ -1,0 +1,85 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/internal-client/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/internal-client",
+        "index": "apps/internal-client/src/index.html",
+        "main": "apps/internal-client/src/main.tsx",
+        "polyfills": "apps/internal-client/src/polyfills.ts",
+        "tsConfig": "apps/internal-client/tsconfig.app.json",
+        "assets": [
+          "apps/internal-client/src/favicon.ico",
+          "apps/internal-client/src/assets"
+        ],
+        "styles": ["apps/internal-client/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/internal-client/src/environments/environment.ts",
+              "with": "apps/internal-client/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "deployUrl": "/nx-template/"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "internal-client:build",
+        "hmr": true,
+        "proxyConfig": "apps/internal-client/proxy.conf.json"
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "internal-client:build:development"
+        },
+        "production": {
+          "buildTarget": "internal-client:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/internal-client/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/internal-client"],
+      "options": {
+        "jestConfig": "apps/internal-client/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["common", "common-react"]
+}
