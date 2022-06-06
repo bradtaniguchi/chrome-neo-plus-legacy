@@ -39,6 +39,7 @@
     "core-js": "^3.6.5",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
+    "luxon": "^2.4.0",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-router-dom": "^6.3.0",
@@ -72,6 +73,7 @@
     "@svgr/webpack": "^5.4.0",
     "@testing-library/react": "13.1.1",
     "@types/jest": "27.4.1",
+    "@types/luxon": "^2.3.2",
     "@types/node": "16.11.7",
     "@types/react": "18.0.8",
     "@types/react-dom": "18.0.3",
@@ -110,4 +112,3 @@
     "*.format:write": "prettier --write"
   }
 }
-

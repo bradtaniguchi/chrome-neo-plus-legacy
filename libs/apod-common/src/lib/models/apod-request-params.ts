@@ -7,12 +7,17 @@ export type WithThumbs = {
    * Return the URL of video thumbnail. If an APOD is not a video, this parameter is ignored.
    */
   thumbs?: boolean;
+  /**
+   * api.nasa.gov key for expanded usage
+   * **Note** this will be removed in the future in favor of an API project
+   */
+  api_key: string;
 };
 
 /**
  * apod-request-param type
  */
-export type GetWithDate = {
+export type GetWithDateParams = {
   /**
    * The date of the APOD image to retrieve
    * defaults to today
@@ -23,17 +28,17 @@ export type GetWithDate = {
 
 /**
  * Type-guard for apod-request-param GetWithDate.
- * @see GetWithDate
+ * @see GetWithDateParams
  */
-export const isGetWithDate = (params: unknown): params is GetWithDate =>
+export const isGetWithDate = (params: unknown): params is GetWithDateParams =>
   !!params &&
   typeof params === 'object' &&
-  typeof (params as GetWithDate).date === 'string';
+  typeof (params as GetWithDateParams).date === 'string';
 
 /**
  * apod-request-param type
  */
-export type GetWithStartAndEndDates = {
+export type GetWithStartAndEndDatesParams = {
   /**
    * The start of a date range, when requesting date for a range of dates.
    * Cannot be used with date.
@@ -45,20 +50,20 @@ export type GetWithStartAndEndDates = {
    * defaults to today
    * format: YYYY-MM-DD
    */
-  end_date: string;
+  end_date?: string;
 } & WithThumbs;
 export const isGetWithStartAndEndDates = (
   params: unknown
-): params is GetWithStartAndEndDates =>
+): params is GetWithStartAndEndDatesParams =>
   !!params &&
   typeof params === 'object' &&
-  typeof (params as GetWithStartAndEndDates).start_date === 'string' &&
-  typeof (params as GetWithStartAndEndDates).end_date === 'string';
+  typeof (params as GetWithStartAndEndDatesParams).start_date === 'string' &&
+  typeof (params as GetWithStartAndEndDatesParams).end_date === 'string';
 
 /**
  * apod-request-param type
  */
-export type GetWithCount = {
+export type GetWithCountParams = {
   /**
    * If this is specified then count randomly chosen images will be returned.
    * Cannot be used with date or start_date and end_date.
@@ -69,10 +74,18 @@ export type GetWithCount = {
 /**
  * Type-guard for apod-request-param GetWithCount.
  */
-export const isGetWithCount = (params: unknown): params is GetWithCount =>
+export const isGetWithCount = (params: unknown): params is GetWithCountParams =>
   !!params &&
   typeof params === 'object' &&
-  typeof (params as GetWithCount).count === 'number' &&
-  (params as GetWithCount).count >= 0 &&
+  typeof (params as GetWithCountParams).count === 'number' &&
+  (params as GetWithCountParams).count >= 0 &&
   !isGetWithDate(params) &&
   !isGetWithStartAndEndDates(params);
+
+/**
+ * Union type representing all possible ApodRequestsParams
+ */
+export type ApodRequestParams =
+  | GetWithDateParams
+  | GetWithStartAndEndDatesParams
+  | GetWithCountParams;
