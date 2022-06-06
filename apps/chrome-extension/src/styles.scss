@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+$height: 400px;
+$width: 400px;
+html {
+  min-height: $height;
+  min-width: $height;
+  max-height: $width;
+  max-width: $width;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  border: 1px solid black;
+}

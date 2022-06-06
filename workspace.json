@@ -4,6 +4,7 @@
   "projects": {
     "apod-common": "libs/apod-common",
     "apod-react": "libs/apod-react",
+    "chrome-extension": "apps/chrome-extension",
     "common": "libs/common",
     "common-react": "libs/common-react",
     "common-react-e2e": "apps/common-react-e2e",
