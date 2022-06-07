@@ -32,7 +32,7 @@
     "typedoc": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "npx typedoc libs/nivl-common/src/index.ts --tsconfig libs/nivl-common/tsconfig.json --out dist/docs/nivl-common"
+        "command": "npx typedoc --options libs/nivl-common/typedoc.js"
       }
     }
   },
