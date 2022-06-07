@@ -1,20 +1,19 @@
-import styles from './apod-image.module.scss';
 import { ApodResponse } from '@chrome-neo-plus/apod-common';
 
 /* eslint-disable-next-line */
-export interface ApodImageProps {
-  /**
-   * The response from the API we are to display
-   */
-  res: ApodResponse;
-}
+export interface ApodImageProps extends ApodResponse {}
 
+/**
+ * Component that renders the Astronomy Picture of the Day.
+ *
+ * Browse the list of images here:
+ * https://www.nasa.gov/multimedia/imagegallery/iotd.html
+ *
+ * @see ApodImageProps
+ */
 export function ApodImage(props: ApodImageProps) {
-  return (
-    <div className={styles['container']}>
-      <h1>Welcome to ApodImage!</h1>
-    </div>
-  );
+  // TODO
+  return <div></div>;
 }
 
 export default ApodImage;

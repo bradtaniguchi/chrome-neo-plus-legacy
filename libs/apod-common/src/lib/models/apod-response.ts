@@ -23,7 +23,7 @@ export interface ApodResponse {
    * The media type
    * ex: 'image'
    */
-  media_type: 'image' | 'video';
+  media_type: 'image' | 'video' | string;
   /**
    * Service version,
    * currently 'v1'
