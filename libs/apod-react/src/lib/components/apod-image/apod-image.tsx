@@ -1,4 +1,5 @@
 import { ApodResponse } from '@chrome-neo-plus/apod-common';
+import Box from '@mui/material/Box';
 
 /* eslint-disable-next-line */
 export interface ApodImageProps extends ApodResponse {}
@@ -12,8 +13,18 @@ export interface ApodImageProps extends ApodResponse {}
  * @see ApodImageProps
  */
 export function ApodImage(props: ApodImageProps) {
-  // TODO
-  return <div></div>;
+  return (
+    <Box
+      sx={{
+        width: '50px',
+        height: '50px',
+      }}
+      component="img"
+      src={props.url}
+      aria-label={props.explanation}
+      alt={props.title}
+    />
+  );
 }
 
 export default ApodImage;

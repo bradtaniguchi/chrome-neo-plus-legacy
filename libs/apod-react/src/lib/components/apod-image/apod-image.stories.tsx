@@ -27,7 +27,9 @@ const EXAMPLE_IMAGE = {
   media_type: 'image',
   service_version: 'v1',
   title: 'The Once and Future Stars of Andromeda',
-  url: 'https://apod.nasa.gov/apod/image/2205/M31_HubbleSpitzerGendler_960.jpg',
+  // **note** this is a backup due to issues with the API itself
+  // url: 'https://apod.nasa.gov/apod/image/2205/M31_HubbleSpitzerGendler_960.jpg',
+  url: 'https://pbs.twimg.com/media/FUn-m-cXwAIUQyp?format=jpg&name=medium',
 };
 
 export const WithoutImage = Template.bind({});
