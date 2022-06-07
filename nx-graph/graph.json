@@ -766,7 +766,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/common-react/src/index.ts --tsconfig libs/common-react/tsconfig.json --out dist/docs/common-react"
+                "command": "npx typedoc --options libs/common-react/typedoc.js"
               }
             },
             "storybook": {
@@ -830,7 +830,7 @@
             },
             {
               "file": "libs/common-react/project.json",
-              "hash": "a1c46a9a88168639e377aff3bdf62583e003af4e"
+              "hash": "7a65c95ec7e249487528ec650afdde30740e65ee"
             },
             {
               "file": "libs/common-react/README.md",
@@ -968,6 +968,10 @@
             {
               "file": "libs/common-react/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/common-react/typedoc.js",
+              "hash": "aacce1f23e15e825e4f58509368e7f18ebee3fa9"
             }
           ]
         }
@@ -1020,7 +1024,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/neows-common/src/index.ts --tsconfig libs/neows-common/tsconfig.json --out dist/docs/neows-common"
+                "command": "npx typedoc --options libs/neows-common/typedoc.js"
               }
             }
           },
@@ -1044,7 +1048,7 @@
             },
             {
               "file": "libs/neows-common/project.json",
-              "hash": "0d3678471b8fdbf40d5106ac57b6cac914fdf17d"
+              "hash": "238cac62b294515372b1621fc01050f9817e5fe6"
             },
             {
               "file": "libs/neows-common/README.md",
@@ -1101,6 +1105,10 @@
             {
               "file": "libs/neows-common/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/neows-common/typedoc.js",
+              "hash": "1cae41e36f4c0eac763c3ef0721902d750b955a1"
             }
           ]
         }
@@ -1153,7 +1161,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/apod-common/src/index.ts --tsconfig libs/apod-common/tsconfig.json --out dist/docs/apod-common"
+                "command": "npx typedoc --options libs/apod-common/typedoc.js"
               }
             }
           },
@@ -1177,7 +1185,7 @@
             },
             {
               "file": "libs/apod-common/project.json",
-              "hash": "566bc34a85df49fe65e62b28e5c03dea82278b2b"
+              "hash": "1e415d63cda9491b5b6f344e91627b189e83ea2b"
             },
             {
               "file": "libs/apod-common/README.md",
@@ -1206,6 +1214,10 @@
             {
               "file": "libs/apod-common/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/apod-common/typedoc.js",
+              "hash": "fe064a367848b7131d5c5c1c6c05b8a14ef43696"
             }
           ]
         }
@@ -1258,7 +1270,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/nivl-common/src/index.ts --tsconfig libs/nivl-common/tsconfig.json --out dist/docs/nivl-common"
+                "command": "npx typedoc --options libs/nivl-common/typedoc.js"
               }
             }
           },
@@ -1282,7 +1294,7 @@
             },
             {
               "file": "libs/nivl-common/project.json",
-              "hash": "986b0d2e650186ccccc203965ca84106a0488922"
+              "hash": "b05e23319987421c36b62bc360905e739c72ee9d"
             },
             {
               "file": "libs/nivl-common/README.md",
@@ -1311,6 +1323,10 @@
             {
               "file": "libs/nivl-common/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/nivl-common/typedoc.js",
+              "hash": "f250a7d3e5458d13ddb62c8bf1de42ed583c3606"
             }
           ]
         }
@@ -1406,7 +1422,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/storybook/src/index.ts --tsconfig libs/storybook/tsconfig.json --out dist/docs/storybook"
+                "command": "npx typedoc --options libs/storybook/typedoc.js"
               }
             }
           },
@@ -1441,11 +1457,11 @@
             },
             {
               "file": "libs/storybook/project.json",
-              "hash": "2ddbff2605317e748f2e13a3a0431d89bd389f81"
+              "hash": "7265b81bd4dd4aac3cd1b7f32dbefe769913503c"
             },
             {
               "file": "libs/storybook/README.md",
-              "hash": "c306e6e0eae27e2bfc81452ae718cc3303644c2f"
+              "hash": "13379f963aa3e664b50fc3845c2c3d5544ff297c"
             },
             {
               "file": "libs/storybook/src/index.ts",
@@ -1485,6 +1501,10 @@
             {
               "file": "libs/storybook/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/storybook/typedoc.js",
+              "hash": "d2ca966aa5eeef8dfbf22a80a5d405a7868e4aef"
             }
           ]
         }
@@ -1537,7 +1557,7 @@
             "typedoc": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "command": "npx typedoc libs/common/src/index.ts --tsconfig libs/common/tsconfig.json --out dist/docs/common"
+                "command": "npx typedoc --options libs/common/typedoc.js"
               }
             }
           },
@@ -1561,7 +1581,7 @@
             },
             {
               "file": "libs/common/project.json",
-              "hash": "d8b79654a44cb780085f76ef09900ceedac3b999"
+              "hash": "98ac4cf39b2550a5a115b550f112849f1b3dad47"
             },
             {
               "file": "libs/common/README.md",
@@ -1602,6 +1622,10 @@
             {
               "file": "libs/common/tsconfig.spec.json",
               "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
+            },
+            {
+              "file": "libs/common/typedoc.js",
+              "hash": "6da83ae6ea87301fe3ee171df9a18ad974b076cd"
             }
           ]
         }
