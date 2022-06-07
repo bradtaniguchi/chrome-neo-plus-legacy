@@ -12,6 +12,11 @@ export type WithThumbs = {
    * **Note** this will be removed in the future in favor of an API project
    */
   api_key: string;
+  /**
+   * Override URL. This will be **required** in the future, once
+   * the `api_key` is deprecated and removed.
+   */
+  baseUrl?: string;
 };
 
 /**

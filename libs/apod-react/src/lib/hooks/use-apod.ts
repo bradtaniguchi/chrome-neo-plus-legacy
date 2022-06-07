@@ -21,6 +21,8 @@ export type UseApodBaseRes = {
 /**
  * Hook that can be used to interact with the APOD API.
  *
+ * Currently directly requests the api_key, but this will be removed
+ * in favor of an API call in the future.
  * @unstable
  */
 export function useApod(params: GetWithDateParams): UseApodBaseRes & {

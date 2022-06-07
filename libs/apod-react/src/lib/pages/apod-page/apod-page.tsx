@@ -1,30 +1,52 @@
-import { useApod } from '../../hooks';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { DateTime } from 'luxon';
-import styles from './apod-page.module.scss';
 import { useMemo } from 'react';
+import ApodImage from '../../components/apod-image/apod-image';
+import { useApod } from '../../hooks';
 
 /* eslint-disable-next-line */
 export interface ApodPageProps {}
 
+/**
+ * Page that displays the APOD image of the day.
+ *
+ * Works with the `ApodListPage` to display a given APOD.
+ *
+ * @page
+ * @unstable
+ */
 export function ApodPage(props: ApodPageProps) {
   const { loading, apodResponse, error } = useApod(
     useMemo(
       () => ({
         date: DateTime.now().toFormat('yyyy-MM-dd'),
+        // TODO: Will be migrated
         api_key: 'DEMO_KEY',
       }),
       []
     )
   );
 
+  // TODO: show loading spinner
   if (loading) return <div>loading...</div>;
   if (error) return <div>error</div>;
 
   return (
-    <div className={styles['container']}>
-      <h1>Welcome to ApodPage!</h1>
-      {apodResponse && JSON.stringify(apodResponse, null, 2)}
-    </div>
+    <Box
+    sx={{
+      display: 'flex',
+      flexDirection: 'row'
+    }}
+    >
+      <div>
+        <ApodImage {...apodResponse} size="100%"/>
+      </div>
+      <div>
+        <Typography variant="h1">{apodResponse?.title}</Typography>
+        <p>{apodResponse?.explanation}</p>
+      </div>
+    </Box>
   );
 }
 
