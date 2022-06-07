@@ -13,6 +13,16 @@ Run `nx test storybook` to execute the unit tests via [Jest](https://jestjs.io).
 
 Run `nx run storybook:storybook` to execute the local storybook project.
 
+## Adding storybook to a pre-existing library
+
+```bash
+nx g @nrwl/react:storybook-configuration project-name
+```
+
+More docs:
+
+https://nx.dev/storybook/overview-react#using-storybook
+
 ### Running all storybooks locally
 
 This library is primarily used as the main storybook project, which uses storybook composition to

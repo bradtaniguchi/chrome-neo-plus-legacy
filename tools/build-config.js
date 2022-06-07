@@ -1,5 +1,5 @@
 const { promises: fs } = require('fs');
-const { writeFile, stat, mkdir } = fs;
+const { readFile, writeFile, stat, mkdir } = fs;
 
 /**
  * This script creates a dist/config.json file with some basic git meta-data.
@@ -15,24 +15,30 @@ const { writeFile, stat, mkdir } = fs;
  */
 (async () => {
   try {
-    await stat('dist')
-      .then((fsStat) => {
-        if (!fsStat.isDirectory())
-          throw new Error(
-            'dist is not a folder, cannot continue, run npm run clean'
-          );
-        return true;
-      })
-      .catch((err) => {
-        if (err.code === 'ENOENT') return mkdir('dist');
-        throw err;
-      });
+    const [version] = await Promise.all([
+      readFile('package.json')
+        .then(JSON.parse)
+        .then(({ version }) => version),
+      stat('dist')
+        .then((fsStat) => {
+          if (!fsStat.isDirectory())
+            throw new Error(
+              'dist is not a folder, cannot continue, run npm run clean'
+            );
+          return true;
+        })
+        .catch((err) => {
+          if (err.code === 'ENOENT') return mkdir('dist');
+          throw err;
+        }),
+    ]);
 
     await writeFile(
       'dist/config.json',
       JSON.stringify(
         (() => {
           const common = {
+            version,
             sha: process.env.GITHUB_SHA ?? '',
             ref_type: process.env.GITHUB_REF_TYPE ?? '',
           };
