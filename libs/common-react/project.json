@@ -42,7 +42,7 @@
     "typedoc": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "npx typedoc libs/common-react/src/index.ts --tsconfig libs/common-react/tsconfig.json --out dist/docs/common-react"
+        "command": "npx typedoc --options libs/common-react/typedoc.js"
       }
     },
     "storybook": {
