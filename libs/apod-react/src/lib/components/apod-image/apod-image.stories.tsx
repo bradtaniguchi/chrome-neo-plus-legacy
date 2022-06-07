@@ -1,6 +1,7 @@
 import { Story, Meta } from '@storybook/react';
 import { ApodImage, ApodImageProps } from './apod-image';
 import Card from '@mui/material/Card';
+import { ApodResponse } from '@chrome-neo-plus/apod-common';
 
 export default {
   component: ApodImage,
@@ -18,7 +19,7 @@ const Template: Story<ApodImageProps> = (args) => <ApodImage {...args} />;
 
 // Example Url:
 //  https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2022-05-23
-const EXAMPLE_IMAGE = {
+const EXAMPLE_IMAGE: ApodResponse = {
   date: '2022-05-23',
   explanation:
     "This picture of Andromeda shows not only where stars are now, but where stars will soon be. Of course, the big, beautiful Andromeda Galaxy, M31, is a spiral galaxy -- and a mere 2.5 million light-years away.  Both space-based and ground-based observatories have been here combined to produce this intriguing composite image of Andromeda, at wavelengths both inside and outside normally visible light. The visible light shows where M31's stars are now -- as highlighted in white and blue hues and imaged by the Hubble, Subaru, and Mayall telescopes.  The infrared light shows where M31's future stars will soon form -- as highlighted in orange hues and imaged by NASA's Spitzer Space Telescope.  The infrared light tracks enormous lanes of dust, warmed by stars, sweeping along Andromeda's spiral arms.  This dust is a tracer of the galaxy's vast interstellar gas -- the raw material for future star formation.  These new stars will likely form over the next hundred million years, surely well before Andromeda merges with our Milky Way Galaxy in about 5 billion years.",
@@ -37,6 +38,8 @@ WithoutImage.args = {};
 
 export const WithImage = Template.bind({});
 WithImage.args = {
+  // default props
+  size: '150px',
   ...EXAMPLE_IMAGE,
 };
 
