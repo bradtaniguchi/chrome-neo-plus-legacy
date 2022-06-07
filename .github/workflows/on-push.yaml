@@ -173,3 +173,51 @@ jobs:
       - run: npx nx run common-react:lint
       - run: npx nx run common-react:test
       - run: npx nx run common-react:build # TODO: verify
+
+  apod-common:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'apod-common') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run apod-common:lint
+      - run: npx nx run apod-common:test
+
+  neows-common:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'neows-common') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run neows-common:lint
+      - run: npx nx run neows-common:test
+
+  nivl-common:
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'nivl-common') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run nivl-common:lint
+      - run: npx nx run nivl-common:test
+
+  chrome-extension:
+    timeout-minutes: 5
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'chrome-extension') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run chrome-extension:lint
+      - run: npx nx run chrome-extension:test
+      - run: npx nx run chrome-extension:build
+      # - Add lighthouse
+      # **Note** Deployment will be another "release" pipeline.
