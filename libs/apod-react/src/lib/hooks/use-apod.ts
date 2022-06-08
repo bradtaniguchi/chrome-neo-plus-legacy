@@ -51,7 +51,7 @@ export function useApod(params: object): unknown {
         if (isGetWithStartAndEndDates(params))
           return getWithStartAndEndDates(params);
         if (isGetWithCount(params)) return getWithCount(params);
-        throw new Error('Unknown params provided');
+        return Promise.reject(new Error('Unknown params provided'));
       })()
         .then((res) => {
           setLoading(false);

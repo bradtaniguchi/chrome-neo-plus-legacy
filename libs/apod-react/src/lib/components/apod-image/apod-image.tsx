@@ -1,16 +1,10 @@
 import { ApodResponse } from '@chrome-neo-plus/apod-common';
 import Box from '@mui/material/Box';
+import { SxProps, Theme } from '@mui/material/styles';
 
 /* eslint-disable-next-line */
 export interface ApodImageProps extends Partial<ApodResponse> {
-  /**
-   * The size of the image, can be provided to scale
-   * the image as a square.
-   *
-   * If not passed, then the image will scale to default. This usually
-   * results in the image being very large.
-   */
-  size?: string;
+  sx: SxProps<Theme>;
 }
 
 /**
@@ -24,10 +18,7 @@ export interface ApodImageProps extends Partial<ApodResponse> {
 export function ApodImage(props: ApodImageProps) {
   return (
     <Box
-      sx={{
-        width: props.size,
-        height: props.size,
-      }}
+      sx={props.sx}
       component="img"
       src={props.url}
       aria-label={props.explanation}

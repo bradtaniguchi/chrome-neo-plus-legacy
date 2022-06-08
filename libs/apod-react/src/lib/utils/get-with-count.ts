@@ -11,7 +11,7 @@ export async function getWithCount(
   params: GetWithCountParams
 ): Promise<ApodResponse[]> {
   const url = new URL(params.baseUrl ?? APOD_API_URL);
-  url.searchParams.append('api_key', params.api_key);
+  if (params.api_key) url.searchParams.append('api_key', params.api_key);
   url.searchParams.append('count', '' + params.count);
   if (params.thumbs) url.searchParams.append('thumbs', 'true');
   const res = await fetch(url.toString());

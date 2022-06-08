@@ -5,7 +5,7 @@ import { ApodResponse } from '@chrome-neo-plus/apod-common';
 
 export default {
   component: ApodImage,
-  title: 'ApodImage',
+  title: 'components/ApodImage',
   decorators: [
     (Story) => (
       <Card>
@@ -39,7 +39,9 @@ WithoutImage.args = {};
 export const WithImage = Template.bind({});
 WithImage.args = {
   // default props
-  size: '150px',
+  sx: {
+    maxWidth: '300px',
+  },
   ...EXAMPLE_IMAGE,
 };
 
