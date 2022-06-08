@@ -1,5 +1,5 @@
 module.exports = {
-  entryPoints: ['./src/index.ts'],
+  entryPoints: ['./src/main.ts'],
   tsconfig: './tsconfig.json',
   out: '../../dist/docs/api',
   readme: './README.md',

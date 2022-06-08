@@ -56,7 +56,7 @@
     "typedoc": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "npx typedoc --options libs/api/typedoc.js"
+        "command": "npx typedoc --options apps/api/typedoc.js"
       }
     },
     "init": {
