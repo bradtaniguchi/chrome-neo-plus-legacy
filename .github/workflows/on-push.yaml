@@ -221,3 +221,18 @@ jobs:
       - run: npx nx run chrome-extension:build
       # - Add lighthouse
       # **Note** Deployment will be another "release" pipeline.
+
+  api:
+    timeout-minutes: 5
+    if: ${{ !contains(github.event.head_commit.message, 'skip ci') && contains(fromJSON(needs.gen-affected.outputs.AFFECTED || '[]'), 'api') }}
+    runs-on: ubuntu-latest
+    needs:
+      - gen-affected
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/init-job
+      - run: npx nx run api:init
+      - run: npx nx run api:lint
+      - run: npx nx run api:test
+      - run: npx nx run api:build
+      # **Note** Deployment will be another "release" pipeline.

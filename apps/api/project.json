@@ -58,6 +58,12 @@
       "options": {
         "command": "npx typedoc --options libs/api/typedoc.js"
       }
+    },
+    "init": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "cd apps/api && npm ci"
+      }
     }
   },
   "tags": []
