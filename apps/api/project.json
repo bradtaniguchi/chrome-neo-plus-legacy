@@ -32,6 +32,12 @@
         "buildTarget": "api:build"
       }
     },
+    "serve-beta": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node apps/api/scripts/serve.js"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
