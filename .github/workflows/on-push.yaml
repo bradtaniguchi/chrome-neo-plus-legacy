@@ -82,6 +82,9 @@ jobs:
           name: internal-nx-graph
           path: dist/nx-graph
           retention-days: 3
+      # Note this is required, as the api project has nested package.json
+      # this may change in the future if we upgrade the `init-job` step
+      - run: npx nx run api:init
       - run: npx nx run-many --target=typedoc --all
       - uses: actions/upload-artifact@v2
         with:
