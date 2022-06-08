@@ -1,0 +1,60 @@
+<!DOCTYPE html><html class="default"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>functions</title><meta name="description" content="Documentation for functions"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.body.classList.add(localStorage.getItem("tsd-theme") || "os")</script><header><div class="tsd-page-toolbar"><div class="container"><div class="table-wrap"><div class="table-cell" id="tsd-search" data-base="."><div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption">Search</label><input type="text" id="tsd-search-field"/></div><ul class="results"><li class="state loading">Preparing search index...</li><li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">functions</a></div><div class="table-cell" id="tsd-widgets"><div id="tsd-filter"><a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a><div class="tsd-filter-group"><div class="tsd-select" id="tsd-filter-visibility"><span class="tsd-select-label">All</span><ul class="tsd-select-list"><li data-value="public">Public</li><li data-value="protected">Public/Protected</li><li data-value="private" class="selected">All</li></ul></div> <input type="checkbox" id="tsd-filter-inherited" checked/><label class="tsd-widget" for="tsd-filter-inherited">Inherited</label><input type="checkbox" id="tsd-filter-externals" checked/><label class="tsd-widget" for="tsd-filter-externals">Externals</label></div></div><a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a></div></div></div></div><div class="tsd-page-title"><div class="container"><h1>functions </h1></div></div></header><div class="container container-main"><div class="row"><div class="col-8 col-content"><div class="tsd-panel tsd-typography">
+<a href="#api" id="api" style="color: inherit; text-decoration: none;">
+  <h1>api</h1>
+</a>
+<p>This app is design as a single project for <strong>all</strong> cloud functions deployed
+to firebase. Even though splitting up each of the API calls into their own
+library might make more sense, having them all in 1 place will be easier to
+start with.</p>
+
+<a href="#local-development-setup" id="local-development-setup" style="color: inherit; text-decoration: none;">
+  <h2>Local Development Setup</h2>
+</a>
+<p>This app has its own package.json, which includes firebase function related packages.</p>
+<p>Run <code>npm install</code> to install these packages once within <code>apps/api</code> folder.</p>
+
+<a href="#running-this-project" id="running-this-project" style="color: inherit; text-decoration: none;">
+  <h2>Running this project</h2>
+</a>
+<pre><code class="language-bash"><span class="hl-0">nx run api:serve</span>
+</code></pre>
+<p><strong>note</strong> there are package.json scripts, but these are from the <code>firebase init functions</code>
+and probably wont work correctly.</p>
+
+<a href="#docs-for-developing-google-cloud-functions" id="docs-for-developing-google-cloud-functions" style="color: inherit; text-decoration: none;">
+  <h2>Docs for developing google cloud functions</h2>
+</a>
+<p>See:
+<a href="https://firebase.google.com/docs/functions/get-started">https://firebase.google.com/docs/functions/get-started</a></p>
+
+<a href="#serve-beta" id="serve-beta" style="color: inherit; text-decoration: none;">
+  <h3>Serve-beta</h3>
+</a>
+<p>Currently there is a serve beta script available via:</p>
+<pre><code><span class="hl-1">nx</span><span class="hl-0"> </span><span class="hl-1">run</span><span class="hl-0"> </span><span class="hl-2">api</span><span class="hl-0">:</span><span class="hl-1">serve</span><span class="hl-0">-</span><span class="hl-1">beta</span>
+</code></pre>
+<p>This target leverages a nodejs script that spins up the build with the
+watch flag and the emulators at the same time.</p>
+<p>This should allow for live-reloads against the functions,
+and allow for quicker development</p>
+<p><strong>This is untested hence why its a beta</strong>. Once its verified that changes
+work as expected, then this will replace the current <code>serve</code> target.</p>
+
+<a href="#running-the-emulator" id="running-the-emulator" style="color: inherit; text-decoration: none;">
+  <h3>Running the emulator</h3>
+</a>
+<p>To run the emulators manually then use:</p>
+<pre><code class="language-bash"><span class="hl-0">firebase emulators:start</span>
+</code></pre>
+<p>only specific emulators:</p>
+<pre><code class="language-bash"><span class="hl-0">firebase emulators:start --only=functions,firestore</span>
+</code></pre>
+
+<a href="#deployments" id="deployments" style="color: inherit; text-decoration: none;">
+  <h3>Deployments</h3>
+</a>
+<p>Deployments could be handled locally, to bypass any lengthy deployment
+process made in github-actions. Documentation on this process will be provided,
+and there will probably
+be a script to allow for single-line deployments.</p>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-variable"><a href="modules.html#getApod" class="tsd-kind-icon">get<wbr/>Apod</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

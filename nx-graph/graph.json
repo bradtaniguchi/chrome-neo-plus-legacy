@@ -1629,6 +1629,190 @@
             }
           ]
         }
+      },
+      "api": {
+        "name": "api",
+        "type": "app",
+        "data": {
+          "root": "apps/api",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "apps/api/src",
+          "projectType": "application",
+          "targets": {
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "apps/api/**/*.ts"
+                ]
+              }
+            },
+            "build": {
+              "executor": "@nrwl/node:webpack",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/apps/api",
+                "main": "apps/api/src/main.ts",
+                "tsConfig": "apps/api/tsconfig.app.json",
+                "assets": [
+                  "apps/api/src/assets"
+                ]
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "extractLicenses": true,
+                  "inspect": false,
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/api/src/environments/environment.ts",
+                      "with": "apps/api/src/environments/environment.prod.ts"
+                    }
+                  ]
+                }
+              }
+            },
+            "build:watch": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "build:watch"
+              }
+            },
+            "serve": {
+              "executor": "@nrwl/node:node",
+              "options": {
+                "buildTarget": "api:build"
+              }
+            },
+            "shell": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "shell"
+              }
+            },
+            "start": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "start"
+              }
+            },
+            "deploy": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "deploy"
+              }
+            },
+            "logs": {
+              "executor": "nx:run-script",
+              "options": {
+                "script": "logs"
+              }
+            },
+            "serve-beta": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "node apps/api/scripts/serve.js"
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/apps/api"
+              ],
+              "options": {
+                "jestConfig": "apps/api/jest.config.ts",
+                "passWithNoTests": true
+              }
+            },
+            "typedoc": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx typedoc --options apps/api/typedoc.js"
+              }
+            },
+            "init": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "cd apps/api && npm ci"
+              }
+            }
+          },
+          "tags": [],
+          "files": [
+            {
+              "file": "apps/api/.eslintrc.json",
+              "hash": "b5a1809692a67a6a66f2da802f1a3f356017f295"
+            },
+            {
+              "file": "apps/api/jest.config.ts",
+              "hash": "d8f47750a856dd0c1c731c1100998d3cda3e492b"
+            },
+            {
+              "file": "apps/api/package-lock.json",
+              "hash": "871d904212f0c9f939b080477d5c27d6539e00bb"
+            },
+            {
+              "file": "apps/api/package.json",
+              "hash": "74d774b741c89c7e0bde2e708b724934269b358a",
+              "deps": [
+                "npm:@typescript-eslint/eslint-plugin",
+                "npm:@typescript-eslint/parser",
+                "npm:eslint",
+                "npm:eslint-plugin-import",
+                "npm:typescript"
+              ]
+            },
+            {
+              "file": "apps/api/project.json",
+              "hash": "5a730668888007a41db6da28b0ece9aeffd7325f"
+            },
+            {
+              "file": "apps/api/README.md",
+              "hash": "dfc0aee360c627dab9dddb3434f7ec46a9648bb7"
+            },
+            {
+              "file": "apps/api/scripts/serve.js",
+              "hash": "d7892375a709bd4af6f009c3b41c7b6fbe378461"
+            },
+            {
+              "file": "apps/api/src/assets/.gitkeep",
+              "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/api/src/environments/environment.prod.ts",
+              "hash": "c9669790be176ac85a5d8c11278875c2f52dc507"
+            },
+            {
+              "file": "apps/api/src/environments/environment.ts",
+              "hash": "a20cfe55731540eac839ab33f9ce1eaa6da50b16"
+            },
+            {
+              "file": "apps/api/src/main.ts",
+              "hash": "8e264d4e8e177960589b6134f61c5e66f5478b2d"
+            },
+            {
+              "file": "apps/api/tsconfig.app.json",
+              "hash": "0d16dce91bdec2e1a1bd0322ff544fd160e5573f"
+            },
+            {
+              "file": "apps/api/tsconfig.json",
+              "hash": "63dbe35fb282d5f9ac4a724607173e6316269e29"
+            },
+            {
+              "file": "apps/api/tsconfig.spec.json",
+              "hash": "546f12877f7f05dd2e7b8782c7d6eae8189c34c0"
+            },
+            {
+              "file": "apps/api/typedoc.js",
+              "hash": "f7375c935e14cc4b79df38b54c133b8b378e719f"
+            }
+          ]
+        }
       }
     },
     "dependencies": {
@@ -1671,7 +1855,8 @@
       "apod-common": [],
       "nivl-common": [],
       "storybook": [],
-      "common": []
+      "common": [],
+      "api": []
     }
   },
   "affectedProjects": [],
