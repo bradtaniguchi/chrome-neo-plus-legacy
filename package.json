@@ -37,6 +37,7 @@
     "@mui/icons-material": "^5.8.0",
     "@mui/material": "^5.8.0",
     "core-js": "^3.6.5",
+    "firebase": "^9.8.2",
     "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "luxon": "^2.4.0",

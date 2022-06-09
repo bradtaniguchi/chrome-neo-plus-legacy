@@ -1,19 +1,17 @@
-import {
-  ApodResponse,
-  APOD_API_URL,
-  GetWithCountParams,
-} from '@chrome-neo-plus/apod-common';
+import { ApodResponse, GetWithCountParams } from '@chrome-neo-plus/apod-common';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from './firebase';
+
+export const getApod = httpsCallable<GetWithCountParams, ApodResponse[]>(
+  functions,
+  'getApod'
+);
 
 /**
- * Returns the APOD data for the given date.
+ * Returns multiple APOD  for the given date range
  */
 export async function getWithCount(
   params: GetWithCountParams
 ): Promise<ApodResponse[]> {
-  const url = new URL(params.baseUrl ?? APOD_API_URL);
-  if (params.api_key) url.searchParams.append('api_key', params.api_key);
-  url.searchParams.append('count', '' + params.count);
-  if (params.thumbs) url.searchParams.append('thumbs', 'true');
-  const res = await fetch(url.toString());
-  return res.json();
+  return getApod(params).then(({ data }) => data);
 }

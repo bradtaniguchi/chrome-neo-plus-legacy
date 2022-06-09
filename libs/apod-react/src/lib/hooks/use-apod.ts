@@ -15,7 +15,13 @@ import {
 } from '../utils';
 
 export type UseApodBaseRes = {
+  /**
+   * If the request is loading
+   */
   loading: boolean;
+  /**
+   * If there was an error fetching the data
+   */
   error?: unknown;
 };
 /**

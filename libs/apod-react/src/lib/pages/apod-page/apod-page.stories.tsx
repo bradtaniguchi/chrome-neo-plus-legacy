@@ -1,9 +1,7 @@
-import { APOD_API_URL } from '@chrome-neo-plus/apod-common';
 import Card from '@mui/material/Card';
 import { Meta, Story } from '@storybook/react';
 import { DateTime } from 'luxon';
 import { withRouter } from 'storybook-addon-react-router-v6/';
-import { ApodApiBaseUrl } from '../../hooks';
 import { ApodPage } from './apod-page';
 
 export default {
@@ -14,9 +12,7 @@ export default {
       // Use the demo api, rather than the future private api
       // as it isn't available yet.
       <Card>
-        <ApodApiBaseUrl.Provider value={APOD_API_URL}>
-          <Story />
-        </ApodApiBaseUrl.Provider>
+        <Story />
       </Card>
     ),
     withRouter,

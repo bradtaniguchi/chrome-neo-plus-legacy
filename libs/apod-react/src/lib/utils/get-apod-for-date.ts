@@ -1,8 +1,11 @@
-import {
-  ApodResponse,
-  APOD_API_URL,
-  GetWithDateParams,
-} from '@chrome-neo-plus/apod-common';
+import { ApodResponse, GetWithDateParams } from '@chrome-neo-plus/apod-common';
+import { httpsCallable } from 'firebase/functions';
+import { functions } from './firebase';
+
+const getApod = httpsCallable<GetWithDateParams, ApodResponse>(
+  functions,
+  'getApod'
+);
 
 /**
  * Returns the APOD data for the given date.
@@ -10,10 +13,5 @@ import {
 export async function getApodForDate(
   params: GetWithDateParams
 ): Promise<ApodResponse> {
-  const url = new URL(params.baseUrl ?? APOD_API_URL);
-  if (params.api_key) url.searchParams.append('api_key', params.api_key);
-  url.searchParams.append('date', params.date);
-  if (params.thumbs) url.searchParams.append('thumbs', 'true');
-  const res = await fetch(url.toString());
-  return res.json();
+  return getApod(params).then(({ data }) => data);
 }

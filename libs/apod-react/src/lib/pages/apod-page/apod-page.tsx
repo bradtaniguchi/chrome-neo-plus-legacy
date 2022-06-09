@@ -1,13 +1,13 @@
 import { GetWithDateParams } from '@chrome-neo-plus/apod-common';
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
+import Link from '@mui/material/Link';
+import Typography from '@mui/material/Typography';
 import { DateTime } from 'luxon';
-import { useContext, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import ApodImage from '../../components/apod-image/apod-image';
-import { ApodApiBaseUrl, useApod } from '../../hooks';
-import Link from '@mui/material/Link';
+import { useApod } from '../../hooks';
 
 export interface ApodPageProps {
   /**
@@ -27,7 +27,6 @@ export interface ApodPageProps {
  * @unstable
  */
 export function ApodPage(props: ApodPageProps) {
-  const baseUrl = useContext(ApodApiBaseUrl);
   const { date: paramDate } = useParams<Pick<GetWithDateParams, 'date'>>();
   const { date: propDate } = props;
   const date = propDate ?? paramDate ?? '';
@@ -42,10 +41,8 @@ export function ApodPage(props: ApodPageProps) {
         // not passing a date will error out as it isn't a valid param,
         // this is expected
         date: dateTime.isValid ? dateTime.toFormat('yyyy-MM-dd') : undefined,
-        baseUrl,
-        api_key: 'DEMO_KEY',
       } as GetWithDateParams),
-    [dateTime, baseUrl]
+    [dateTime]
   );
 
   const { loading, apodResponse, error } = useApod(apodRequest);

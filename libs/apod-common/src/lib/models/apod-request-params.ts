@@ -7,17 +7,6 @@ export type WithThumbs = {
    * Return the URL of video thumbnail. If an APOD is not a video, this parameter is ignored.
    */
   thumbs?: boolean;
-  /**
-   * api.nasa.gov key for expanded usage
-   *
-   * **Note** this will be removed in the future in favor of an API project
-   */
-  api_key?: string;
-  /**
-   * Override URL. This will be **required** in the future, once
-   * the `api_key` is deprecated and removed.
-   */
-  baseUrl?: string;
 };
 
 /**
