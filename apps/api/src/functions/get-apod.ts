@@ -10,6 +10,7 @@ import { https, logger, Response } from 'firebase-functions';
 import got from 'got';
 import { DateTime } from 'luxon';
 import { APOD_API_URL } from '../constants/apod-api-url';
+import { config } from '../constants/config';
 import { environment } from '../environments/environment';
 import { ResponseWrapper } from '../models/response-wrapper';
 import { apodCache } from '../utils/apod-cache';
@@ -48,7 +49,7 @@ export const getApod = https.onRequest(async (request, response) => {
     const params = request.body.data;
 
     const url = new URL(APOD_API_URL);
-    url.searchParams.append('api_key', 'DEMO_KEY'); // TODO: update with environment variable
+    url.searchParams.append('api_key', config.API_KEY);
     if (isGetWithDate(params)) {
       await handleGetWithDate({
         url,

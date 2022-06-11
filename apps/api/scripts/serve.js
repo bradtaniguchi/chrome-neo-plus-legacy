@@ -20,30 +20,53 @@ const { copy, pathExists } = require('fs-extra');
       console.log(output);
       if (output.includes('Watching for file changes') && !initialBuildDone) {
         initialBuildDone = true;
-        const source = 'apps/api/node_modules';
-        const target = 'dist/apps/api/node_modules';
-        const [sourceExists, targetExists] = await Promise.all([
-          pathExists(source),
-          pathExists(target),
+        const nodeModulesSource = 'apps/api/node_modules';
+        const nodeModulesTarget = 'dist/apps/api/node_modules';
+
+        const envSource = 'apps/api/.env';
+        const envTarget = 'dist/apps/api/src/.env';
+
+        const [
+          nodeModulesSourceExists,
+          nodeModulesTargetExists,
+          envSourceExists,
+        ] = await Promise.all([
+          pathExists(nodeModulesSource),
+          pathExists(nodeModulesTarget),
+          pathExists(envSource),
         ]);
         // Moving node_modules, to save time
-        if (!sourceExists) {
+        if (!nodeModulesSourceExists) {
           throw new Error(
-            'apps/api/node_modules does not exist as a source, ' +
+            `${nodeModulesSource} does not exist as a source, ` +
               'run npm install in apps/api'
           );
         }
-        if (targetExists) {
+
+        if (!envSourceExists) {
+          throw new Error(
+            `${envSource} does not exist as a source ` +
+              ' please create one otherwise the functions will fail to run'
+          );
+        }
+
+        if (nodeModulesTargetExists) {
           console.log('>> node_modules already exists, skipping');
         } else {
           console.log('>> copying node_modules...');
-          await copy(source, target);
+          await copy(nodeModulesSource, nodeModulesTarget);
           console.log('>> done copying node_modules');
         }
 
+        // Always move the .env file as it could of been updated.
+        console.log('>> copying .env...');
+        await copy(envSource, envTarget);
+        console.log('>> done copying .env');
+
+        console.log('>> copying libraries...');
         // Moving lib dependencies into node_modules so they are
         // correctly loaded.
-        const libs = ['apod-common'];
+        const libs = ['apod-common', 'common'];
         for (const lib of libs) {
           const source = `dist/libs/${lib}`;
           const target = `dist/apps/api/node_modules/@chrome-neo-plus/${lib}`;
