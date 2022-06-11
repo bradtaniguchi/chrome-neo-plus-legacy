@@ -3,6 +3,7 @@ import { Meta, Story } from '@storybook/react';
 import { DateTime } from 'luxon';
 import { withRouter } from 'storybook-addon-react-router-v6/';
 import { ApodPage } from './apod-page';
+import { LUXON_DATE } from '@chrome-neo-plus/common';
 
 export default {
   component: ApodPage,
@@ -32,7 +33,7 @@ RoutedDate.args = {};
 
 export const PropOverrideDate = Template.bind({});
 PropOverrideDate.args = {
-  date: DateTime.local().toFormat('yyyy-MM-dd'),
+  date: DateTime.local().toFormat(LUXON_DATE),
 };
 
 export const InvalidDate = Template.bind({});
