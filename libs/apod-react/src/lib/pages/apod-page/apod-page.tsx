@@ -68,7 +68,10 @@ export function ApodPage(props: ApodPageProps) {
         <CircularProgress />
       </Box>
     );
-  if (error) return <div>Oops there was an error!</div>;
+  if (error)
+    return (
+      <div title={JSON.stringify(error, null, 2)}>Oops there was an error!</div>
+    );
   if (!apodResponse) return <div>No APOD found</div>;
   return (
     <Box

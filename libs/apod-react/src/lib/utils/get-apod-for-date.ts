@@ -13,5 +13,10 @@ const getApod = httpsCallable<GetWithDateParams, ApodResponse>(
 export async function getApodForDate(
   params: GetWithDateParams
 ): Promise<ApodResponse> {
-  return getApod(params).then(({ data }) => data);
+  return getApod(params)
+    .then(({ data }) => data)
+    .catch((err) => {
+      console.error(err);
+      throw err;
+    });
 }

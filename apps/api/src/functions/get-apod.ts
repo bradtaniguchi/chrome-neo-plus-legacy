@@ -1,4 +1,5 @@
 import {
+  ApodResponse,
   isGetWithCount,
   isGetWithDate,
   isGetWithStartAndEndDates,
@@ -6,6 +7,7 @@ import {
 import { https, logger } from 'firebase-functions';
 import { APOD_API_URL } from '../constants/apod-api-url';
 import { environment } from '../environments/environment';
+import { ResponseWrapper } from '../models/response-wrapper';
 import { getGot } from '../utils/got';
 
 /**
@@ -50,7 +52,9 @@ export const getApod = https.onRequest(async (request, response) => {
       if (params.thumbs) url.searchParams.append('thumbs', 'true');
       const res = await got.get(url.toString()).json();
       // TODO: add caching
-      response.send(res);
+      response.send({
+        data: res,
+      } as ResponseWrapper<ApodResponse>);
       return;
     }
 
@@ -60,7 +64,9 @@ export const getApod = https.onRequest(async (request, response) => {
       if (params.thumbs) url.searchParams.append('thumbs', 'true');
       const res = await got.get(url.toString()).json();
       // TODO: add caching
-      response.send(res);
+      response.send({
+        data: res,
+      });
       return;
     }
 
@@ -71,7 +77,9 @@ export const getApod = https.onRequest(async (request, response) => {
       if (params.thumbs) url.searchParams.append('thumbs', 'true');
       const res = await got.get(url.toString()).json();
       // TODO: add caching
-      response.send(res);
+      response.send({
+        data: res,
+      });
     }
 
     logger.debug(prefix + 'unknown params provided');

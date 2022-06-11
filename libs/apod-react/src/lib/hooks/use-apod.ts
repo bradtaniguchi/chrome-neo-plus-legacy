@@ -59,11 +59,9 @@ export function useApod(params: object): unknown {
         if (isGetWithCount(params)) return getWithCount(params);
         return Promise.reject(new Error('Unknown params provided'));
       })()
-        .then((res) => {
-          setLoading(false);
-          setApodResponse(res);
-        })
-        .catch((err) => setError(err));
+        .then((res) => setApodResponse(res))
+        .catch((err) => setError(err))
+        .finally(() => setLoading(false));
       mounted = true;
     }
   }, [params]);
