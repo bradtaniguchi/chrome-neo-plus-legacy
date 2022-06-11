@@ -21,8 +21,8 @@ import { getGot } from '../utils/got';
 export const getApod = https.onRequest(async (request, response) => {
   const got = await getGot();
   const prefix = 'apod ';
+
   try {
-    // TODO: update to only apply locally, and for storybook later?
     if (!environment.production) {
       logger.info(prefix + 'CORS allowed for all');
       response.set('Access-Control-Allow-Origin', '*');
@@ -38,16 +38,15 @@ export const getApod = https.onRequest(async (request, response) => {
       return;
     }
 
-    logger.info(prefix + 'called');
+    logger.info(prefix + 'called', { params: request.body.data });
 
-    const params = request.params;
+    const params = request.body.data;
 
     const url = new URL(APOD_API_URL);
     url.searchParams.append('api_key', 'DEMO_KEY'); // TODO: update with environment variable
     if (isGetWithDate(params)) {
       logger.info(prefix + 'get-with-date', params);
-      url.searchParams.append('start_date', params.start_date);
-      if (params.end_date) url.searchParams.append('end_date', params.end_date);
+      url.searchParams.append('date', params.date);
       if (params.thumbs) url.searchParams.append('thumbs', 'true');
       const res = await got.get(url.toString()).json();
       // TODO: add caching
@@ -57,7 +56,7 @@ export const getApod = https.onRequest(async (request, response) => {
 
     if (isGetWithCount(params)) {
       logger.info(prefix + 'get-with-count', params);
-      url.searchParams.append('date', params.date);
+      url.searchParams.append('count', '' + params.count);
       if (params.thumbs) url.searchParams.append('thumbs', 'true');
       const res = await got.get(url.toString()).json();
       // TODO: add caching
@@ -75,7 +74,10 @@ export const getApod = https.onRequest(async (request, response) => {
       response.send(res);
     }
 
-    throw new Error('Unknown params provided');
+    logger.debug(prefix + 'unknown params provided');
+    response.status(400).send({
+      message: 'Unknown params provided',
+    });
   } catch (err) {
     logger.error(prefix + 'error', err);
     response.status(500).send({
@@ -83,17 +85,3 @@ export const getApod = https.onRequest(async (request, response) => {
     });
   }
 });
-
-// TODO: Update to only support localhost for testing later.
-// if (request.method === 'OPTIONS') {
-//   response.set('Access-Control-Allow-Headers', 'authorization,content-type');
-//   response.set('Access-Control-Allow-Origin', '*');
-//   response.status(204).send('');
-// } else {
-//   // return hello world
-//   response.set('Access-Control-Allow-Origin', '*');
-//   response.send({
-//     message: 'Hello from firebase!',
-//   });
-// }
-// TODO: change from demo-key
