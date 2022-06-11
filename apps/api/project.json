@@ -4,13 +4,26 @@
   "projectType": "application",
   "targets": {
     "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/api",
+        "main": "apps/api/src/main.ts",
+        "tsConfig": "apps/api/tsconfig.app.json",
+        "assets": ["apps/api/src/assets"],
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "build-legacy": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/api",
         "main": "apps/api/src/main.ts",
         "tsConfig": "apps/api/tsconfig.app.json",
-        "assets": ["apps/api/src/assets"]
+        "assets": ["apps/api/src/assets"],
+        "generatePackageJson": true,
+        "externalDependencies": "all"
       },
       "configurations": {
         "production": {
@@ -26,13 +39,13 @@
         }
       }
     },
-    "serve": {
+    "serve-legacy": {
       "executor": "@nrwl/node:node",
       "options": {
         "buildTarget": "api:build"
       }
     },
-    "serve-beta": {
+    "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "node apps/api/scripts/serve.js"
