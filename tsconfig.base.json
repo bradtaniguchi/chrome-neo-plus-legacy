@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@chrome-neo-plus/apod-common": ["libs/apod-common/src/index.ts"],
+      "@chrome-neo-plus/apod-react": ["libs/apod-react/src/index.ts"],
       "@chrome-neo-plus/common": ["libs/common/src/index.ts"],
       "@chrome-neo-plus/common-react": ["libs/common-react/src/index.ts"],
       "@chrome-neo-plus/neows-common": ["libs/neows-common/src/index.ts"],

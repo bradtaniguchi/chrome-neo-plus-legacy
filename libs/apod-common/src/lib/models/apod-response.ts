@@ -1,4 +1,7 @@
-export interface ApodInterface {
+/**
+ * Represents an APOD response from the API.
+ */
+export interface ApodResponse {
   /**
    * Copyright if image is not public domain
    */
@@ -20,7 +23,7 @@ export interface ApodInterface {
    * The media type
    * ex: 'image'
    */
-  media_type: 'image' | 'video';
+  media_type: 'image' | 'video' | string;
   /**
    * Service version,
    * currently 'v1'
