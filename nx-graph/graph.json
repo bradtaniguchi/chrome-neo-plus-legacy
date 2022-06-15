@@ -301,7 +301,7 @@
             },
             {
               "file": "apps/chrome-extension/src/styles.scss",
-              "hash": "b60d3ea28130d560d2c37cab574e26b97404829a"
+              "hash": "229e1036155a19d11909e89848a5a9f934482f7d"
             },
             {
               "file": "apps/chrome-extension/tsconfig.app.json",
@@ -1193,15 +1193,19 @@
             },
             {
               "file": "libs/apod-common/src/index.ts",
-              "hash": "30d31ebcaa7069ad5b4d489e6499893ad7afa26f"
+              "hash": "b98274a223efc0795e6751659f0f0dabf0fa7061"
+            },
+            {
+              "file": "libs/apod-common/src/lib/constants/base-url.ts",
+              "hash": "2c8ee10936ee8f5dad76f125b0f755b88811d430"
             },
             {
               "file": "libs/apod-common/src/lib/models/apod-request-params.ts",
-              "hash": "ed068ae67c09c45fcf6d9847cce5f4300122fac6"
+              "hash": "8497be178df3d47f9b9e68cffc7fb1dbf54ac329"
             },
             {
               "file": "libs/apod-common/src/lib/models/apod-response.ts",
-              "hash": "e567a357f33c76dff39a9259d4e36333ce910489"
+              "hash": "65f7600d7e83a8ebc15e52239f1483e86e10777a"
             },
             {
               "file": "libs/apod-common/tsconfig.json",
@@ -1327,6 +1331,269 @@
             {
               "file": "libs/nivl-common/typedoc.js",
               "hash": "f250a7d3e5458d13ddb62c8bf1de42ed583c3606"
+            }
+          ]
+        }
+      },
+      "apod-react": {
+        "name": "apod-react",
+        "type": "lib",
+        "data": {
+          "root": "libs/apod-react",
+          "$schema": "../../node_modules/nx/schemas/project-schema.json",
+          "sourceRoot": "libs/apod-react/src",
+          "projectType": "library",
+          "tags": [],
+          "targets": {
+            "build": {
+              "executor": "@nrwl/web:rollup",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "outputPath": "dist/libs/apod-react",
+                "tsConfig": "libs/apod-react/tsconfig.lib.json",
+                "project": "libs/apod-react/package.json",
+                "entryFile": "libs/apod-react/src/index.ts",
+                "external": [
+                  "react/jsx-runtime"
+                ],
+                "rollupConfig": "@nrwl/react/plugins/bundle-rollup",
+                "compiler": "babel",
+                "assets": [
+                  {
+                    "glob": "libs/apod-react/README.md",
+                    "input": ".",
+                    "output": "."
+                  }
+                ]
+              }
+            },
+            "lint": {
+              "executor": "@nrwl/linter:eslint",
+              "outputs": [
+                "{options.outputFile}"
+              ],
+              "options": {
+                "lintFilePatterns": [
+                  "libs/apod-react/**/*.{ts,tsx,js,jsx}"
+                ]
+              }
+            },
+            "test": {
+              "executor": "@nrwl/jest:jest",
+              "outputs": [
+                "coverage/libs/apod-react"
+              ],
+              "options": {
+                "jestConfig": "libs/apod-react/jest.config.ts",
+                "passWithNoTests": true
+              }
+            },
+            "typedoc": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx typedoc libs/apod-react/src/index.ts --tsconfig libs/apod-react/tsconfig.json --out dist/docs/commapodon-react"
+              }
+            },
+            "storybook": {
+              "executor": "@nrwl/storybook:storybook",
+              "options": {
+                "uiFramework": "@storybook/react",
+                "port": 4400,
+                "config": {
+                  "configFolder": "libs/apod-react/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              }
+            },
+            "build-storybook": {
+              "executor": "@nrwl/storybook:build",
+              "outputs": [
+                "{options.outputPath}"
+              ],
+              "options": {
+                "uiFramework": "@storybook/react",
+                "outputPath": "dist/storybook/apod-react",
+                "config": {
+                  "configFolder": "libs/apod-react/.storybook"
+                }
+              },
+              "configurations": {
+                "ci": {
+                  "quiet": true
+                }
+              }
+            }
+          },
+          "files": [
+            {
+              "file": "libs/apod-react/.babelrc",
+              "hash": "ccae900be42788285eb6e1b3a2af4b81f56f14fe"
+            },
+            {
+              "file": "libs/apod-react/.eslintrc.json",
+              "hash": "734ddaceea447738208c9519158ad6b3062f3929"
+            },
+            {
+              "file": "libs/apod-react/.storybook/main.js",
+              "hash": "b17a4cd6ebe5e3b9bf8f3b47328cfa969bc0fef5"
+            },
+            {
+              "file": "libs/apod-react/.storybook/preview.js",
+              "hash": "2c962916d983f479922058c63895ab52ec3659b4",
+              "deps": [
+                "npm:firebase"
+              ]
+            },
+            {
+              "file": "libs/apod-react/.storybook/tsconfig.json",
+              "hash": "7a1170995999ff179ae31ea7b87133b1c2161bc2"
+            },
+            {
+              "file": "libs/apod-react/jest.config.ts",
+              "hash": "b01007be193b3e5e30439d631a5b0817395817bb"
+            },
+            {
+              "file": "libs/apod-react/package.json",
+              "hash": "6aa1171c511bb89f5c054c7f8efaaaae60cfafd0"
+            },
+            {
+              "file": "libs/apod-react/project.json",
+              "hash": "c9ce106bab883b79464c185ee380a84dbb88d79c"
+            },
+            {
+              "file": "libs/apod-react/README.md",
+              "hash": "7fd01cf41b1ca526f622a2413d6b3698bfadbc2a"
+            },
+            {
+              "file": "libs/apod-react/src/index.ts",
+              "hash": "d21b0131a1095b8856fb282a218f98fe083c0154"
+            },
+            {
+              "file": "libs/apod-react/src/lib/components/apod-image/apod-image.stories.tsx",
+              "hash": "739cbb343a9b07dfabd21b80975455f84dc9e180",
+              "deps": [
+                "npm:@storybook/react",
+                "npm:@mui/material",
+                "apod-common"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/components/apod-image/apod-image.tsx",
+              "hash": "945b8dcc1a1f1663a724e07bb37460fd7b935612",
+              "deps": [
+                "apod-common",
+                "npm:@mui/material"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/components/index.ts",
+              "hash": "09646fb65f37470c43e6c62496317401d3764e01"
+            },
+            {
+              "file": "libs/apod-react/src/lib/hooks/index.ts",
+              "hash": "6c20f1d8e8def4d79efd3832f3da489f615cac6b"
+            },
+            {
+              "file": "libs/apod-react/src/lib/hooks/use-apod.ts",
+              "hash": "26aae174b82b16671a9863aadaa9b7a724e5a6dd",
+              "deps": [
+                "apod-common",
+                "npm:react"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/apod-list-page/apod-list-page.module.scss",
+              "hash": "45c2aa47e9879fa033c0d1f266154dd6106c2201"
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/apod-list-page/apod-list-page.spec.tsx",
+              "hash": "433e5b7e98ccdc197767294fefa544a86a02ff07",
+              "deps": [
+                "npm:@testing-library/react"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/apod-list-page/apod-list-page.tsx",
+              "hash": "c4e3a8c92012096a1c8d3bc65aece45b819d31ff"
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/apod-page/apod-page.stories.tsx",
+              "hash": "40f50d0ed8ac1a13409e722fd1935febceaaf6f8",
+              "deps": [
+                "npm:@mui/material",
+                "npm:@storybook/react",
+                "npm:luxon",
+                "npm:storybook-addon-react-router-v6",
+                "common"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/apod-page/apod-page.tsx",
+              "hash": "761546b061cd0f94b21d33907939ffaf66ccb88a",
+              "deps": [
+                "apod-common",
+                "npm:@mui/material",
+                "npm:luxon",
+                "npm:react",
+                "npm:react-router-dom"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/pages/index.ts",
+              "hash": "68154cc1626508007ffc44402cbec1029a1436d0"
+            },
+            {
+              "file": "libs/apod-react/src/lib/utils/firebase.ts",
+              "hash": "728f370a54333acc24ea0595542845ed085c6202",
+              "deps": [
+                "npm:firebase"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/utils/get-apod-for-date.ts",
+              "hash": "fc3c98bd91df2300f5398be5c6b0d6faffbd97d1",
+              "deps": [
+                "apod-common",
+                "npm:firebase"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/utils/get-with-count.ts",
+              "hash": "1d4d21a6bf1a8430a59f20b6f8804931b5608d4d",
+              "deps": [
+                "apod-common",
+                "npm:firebase"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/utils/get-with-start-and-end-dates.ts",
+              "hash": "13e1e8276423a4c878be5c18510fce35156dd4f6",
+              "deps": [
+                "apod-common",
+                "npm:firebase"
+              ]
+            },
+            {
+              "file": "libs/apod-react/src/lib/utils/index.ts",
+              "hash": "ce3e89183cc72e932ce5981ee84066c6d1ee3079"
+            },
+            {
+              "file": "libs/apod-react/tsconfig.json",
+              "hash": "9fff9cc2db0cca15bc96bf1cde3e27146d3922f2"
+            },
+            {
+              "file": "libs/apod-react/tsconfig.lib.json",
+              "hash": "2e54c51309bc084f59acb6b55604a4803b3fb238"
+            },
+            {
+              "file": "libs/apod-react/tsconfig.spec.json",
+              "hash": "ff08addd60ff581234ec9423d2bb90f31d8166e8"
             }
           ]
         }
@@ -1577,7 +1844,7 @@
             },
             {
               "file": "libs/common/package.json",
-              "hash": "4e5232467c62a9b748b0ad85f65a3b2101117865"
+              "hash": "70aa3200c7a1912fb5fc6eab339e824c2a8d9dd5"
             },
             {
               "file": "libs/common/project.json",
@@ -1589,7 +1856,15 @@
             },
             {
               "file": "libs/common/src/index.ts",
-              "hash": "efb36b5cbe0761ecb2c5317b79268e110d295175"
+              "hash": "3bd936cdcff2e05135eb0bc912f5b011a364250e"
+            },
+            {
+              "file": "libs/common/src/lib/constants/index.ts",
+              "hash": "8409a75981d4a56e4ef42f166c924291c63d0057"
+            },
+            {
+              "file": "libs/common/src/lib/constants/luxon-date.ts",
+              "hash": "d9a195d5b66fe2f00c451be8402a7564fc021d62"
             },
             {
               "file": "libs/common/src/lib/models/document-with-id.ts",
@@ -1651,7 +1926,7 @@
               }
             },
             "build": {
-              "executor": "@nrwl/node:webpack",
+              "executor": "@nrwl/js:tsc",
               "outputs": [
                 "{options.outputPath}"
               ],
@@ -1664,16 +1939,8 @@
                 ]
               },
               "configurations": {
-                "production": {
-                  "optimization": true,
-                  "extractLicenses": true,
-                  "inspect": false,
-                  "fileReplacements": [
-                    {
-                      "replace": "apps/api/src/environments/environment.ts",
-                      "with": "apps/api/src/environments/environment.prod.ts"
-                    }
-                  ]
+                "watch": {
+                  "watch": true
                 }
               }
             },
@@ -1684,9 +1951,9 @@
               }
             },
             "serve": {
-              "executor": "@nrwl/node:node",
+              "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "buildTarget": "api:build"
+                "command": "node apps/api/scripts/serve.js"
               }
             },
             "shell": {
@@ -1713,10 +1980,39 @@
                 "script": "logs"
               }
             },
-            "serve-beta": {
-              "executor": "@nrwl/workspace:run-commands",
+            "build-legacy": {
+              "executor": "@nrwl/node:webpack",
+              "outputs": [
+                "{options.outputPath}"
+              ],
               "options": {
-                "command": "node apps/api/scripts/serve.js"
+                "outputPath": "dist/apps/api",
+                "main": "apps/api/src/main.ts",
+                "tsConfig": "apps/api/tsconfig.app.json",
+                "assets": [
+                  "apps/api/src/assets"
+                ],
+                "generatePackageJson": true,
+                "externalDependencies": "all"
+              },
+              "configurations": {
+                "production": {
+                  "optimization": true,
+                  "extractLicenses": true,
+                  "inspect": false,
+                  "fileReplacements": [
+                    {
+                      "replace": "apps/api/src/environments/environment.ts",
+                      "with": "apps/api/src/environments/environment.prod.ts"
+                    }
+                  ]
+                }
+              }
+            },
+            "serve-legacy": {
+              "executor": "@nrwl/node:node",
+              "options": {
+                "buildTarget": "api:build"
               }
             },
             "test": {
@@ -1754,11 +2050,11 @@
             },
             {
               "file": "apps/api/package-lock.json",
-              "hash": "871d904212f0c9f939b080477d5c27d6539e00bb"
+              "hash": "2b17fb7cd70925aad6368ecc8419ba0fc181446c"
             },
             {
               "file": "apps/api/package.json",
-              "hash": "74d774b741c89c7e0bde2e708b724934269b358a",
+              "hash": "91a388185f8459f68f4748a3ac56985c770cd010",
               "deps": [
                 "npm:@typescript-eslint/eslint-plugin",
                 "npm:@typescript-eslint/parser",
@@ -1769,7 +2065,7 @@
             },
             {
               "file": "apps/api/project.json",
-              "hash": "5a730668888007a41db6da28b0ece9aeffd7325f"
+              "hash": "9b59ae6972bf9ca30fd1e3f788f7b6be1bfcde72"
             },
             {
               "file": "apps/api/README.md",
@@ -1777,11 +2073,22 @@
             },
             {
               "file": "apps/api/scripts/serve.js",
-              "hash": "d7892375a709bd4af6f009c3b41c7b6fbe378461"
+              "hash": "35a446ae0e008809360eb9763b83f5719c3c55a8",
+              "deps": [
+                "npm:fs-extra"
+              ]
             },
             {
               "file": "apps/api/src/assets/.gitkeep",
               "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/api/src/constants/apod-api-url.ts",
+              "hash": "2ec0215998d6df4885b48d5803d0390c11c83473"
+            },
+            {
+              "file": "apps/api/src/constants/config.ts",
+              "hash": "5b8685266336d2de8136edeb348f9fb2c2ac75c1"
             },
             {
               "file": "apps/api/src/environments/environment.prod.ts",
@@ -1792,8 +2099,28 @@
               "hash": "a20cfe55731540eac839ab33f9ce1eaa6da50b16"
             },
             {
+              "file": "apps/api/src/functions/get-apod.ts",
+              "hash": "c8e94631009a50b381d82a25dd34a9c96bd0e3d2",
+              "deps": [
+                "apod-common",
+                "common",
+                "npm:luxon"
+              ]
+            },
+            {
               "file": "apps/api/src/main.ts",
-              "hash": "8e264d4e8e177960589b6134f61c5e66f5478b2d"
+              "hash": "4419119a4249e20f7f211514018928b2bb7f4e64"
+            },
+            {
+              "file": "apps/api/src/models/response-wrapper.ts",
+              "hash": "7ddb4db4c11d931f360566e52181cd30f7f19bbc"
+            },
+            {
+              "file": "apps/api/src/utils/apod-cache.ts",
+              "hash": "fed98fdfd1dd96c8e80fb7b53cb9d666d30fb03d",
+              "deps": [
+                "apod-common"
+              ]
             },
             {
               "file": "apps/api/tsconfig.app.json",
@@ -1802,10 +2129,6 @@
             {
               "file": "apps/api/tsconfig.json",
               "hash": "63dbe35fb282d5f9ac4a724607173e6316269e29"
-            },
-            {
-              "file": "apps/api/tsconfig.spec.json",
-              "hash": "546f12877f7f05dd2e7b8782c7d6eae8189c34c0"
             },
             {
               "file": "apps/api/typedoc.js",
@@ -1854,9 +2177,32 @@
       "neows-common": [],
       "apod-common": [],
       "nivl-common": [],
+      "apod-react": [
+        {
+          "source": "apod-react",
+          "target": "apod-common",
+          "type": "static"
+        },
+        {
+          "source": "apod-react",
+          "target": "common",
+          "type": "static"
+        }
+      ],
       "storybook": [],
       "common": [],
-      "api": []
+      "api": [
+        {
+          "source": "api",
+          "target": "apod-common",
+          "type": "static"
+        },
+        {
+          "source": "api",
+          "target": "common",
+          "type": "static"
+        }
+      ]
     }
   },
   "affectedProjects": [],
