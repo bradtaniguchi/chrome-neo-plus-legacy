@@ -18,6 +18,8 @@ start with.</p>
 </a>
 <pre><code class="language-bash"><span class="hl-0">nx run api:serve</span>
 </code></pre>
+<p>This will run a custom <code>serve.js</code> script that internally will manage
+the build and serving steps with automatic reloads.</p>
 <p><strong>note</strong> there are package.json scripts, but these are from the <code>firebase init functions</code>
 and probably wont work correctly.</p>
 
@@ -27,22 +29,11 @@ and probably wont work correctly.</p>
 <p>See:
 <a href="https://firebase.google.com/docs/functions/get-started">https://firebase.google.com/docs/functions/get-started</a></p>
 
-<a href="#serve-beta" id="serve-beta" style="color: inherit; text-decoration: none;">
-  <h3>Serve-beta</h3>
-</a>
-<p>Currently there is a serve beta script available via:</p>
-<pre><code><span class="hl-1">nx</span><span class="hl-0"> </span><span class="hl-1">run</span><span class="hl-0"> </span><span class="hl-2">api</span><span class="hl-0">:</span><span class="hl-1">serve</span><span class="hl-0">-</span><span class="hl-1">beta</span>
-</code></pre>
-<p>This target leverages a nodejs script that spins up the build with the
-watch flag and the emulators at the same time.</p>
-<p>This should allow for live-reloads against the functions,
-and allow for quicker development</p>
-<p><strong>This is untested hence why its a beta</strong>. Once its verified that changes
-work as expected, then this will replace the current <code>serve</code> target.</p>
-
 <a href="#running-the-emulator" id="running-the-emulator" style="color: inherit; text-decoration: none;">
   <h3>Running the emulator</h3>
 </a>
+<p>Generally you wont need to run the emulators manually, as the <code>serve</code> target
+handles the task internally.</p>
 <p>To run the emulators manually then use:</p>
 <pre><code class="language-bash"><span class="hl-0">firebase emulators:start</span>
 </code></pre>
@@ -50,11 +41,22 @@ work as expected, then this will replace the current <code>serve</code> target.<
 <pre><code class="language-bash"><span class="hl-0">firebase emulators:start --only=functions,firestore</span>
 </code></pre>
 
+<a href="#building-the-project" id="building-the-project" style="color: inherit; text-decoration: none;">
+  <h3>Building the project</h3>
+</a>
+<p>There are 2 ways to build this project.
+The main tsc compile based build, and the <code>build-prod</code> variant.</p>
+<p>The &quot;tsc build&quot;:</p>
+<pre><code class="language-bash"><span class="hl-0">nx run api:build</span>
+</code></pre>
+<p>The <code>build-prod</code> build:</p>
+<pre><code class="language-bash"><span class="hl-0">nx run api:build-prod</span>
+</code></pre>
+<p>The difference is <code>build-prod</code> will not only run <code>nx run api:build</code>, but also
+setup the <code>dist/api</code> folder to be ready to be deployed to production environments.</p>
+
 <a href="#deployments" id="deployments" style="color: inherit; text-decoration: none;">
   <h3>Deployments</h3>
 </a>
-<p>Deployments could be handled locally, to bypass any lengthy deployment
-process made in github-actions. Documentation on this process will be provided,
-and there will probably
-be a script to allow for single-line deployments.</p>
+<p>TBD...</p>
 </div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-variable"><a href="modules.html#getApod" class="tsd-kind-icon">get<wbr/>Apod</a></li><li class="tsd-kind-function"><a href="modules.html#handleGetWithDate" class="tsd-kind-icon">handle<wbr/>Get<wbr/>With<wbr/>Date</a></li></ul></nav></div></div></div><footer class="with-border-bottom"><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="container tsd-generator"><p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div><div class="overlay"></div><script src="assets/main.js"></script></body></html>

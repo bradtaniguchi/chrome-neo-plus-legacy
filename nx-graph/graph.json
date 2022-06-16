@@ -1980,39 +1980,10 @@
                 "script": "logs"
               }
             },
-            "build-legacy": {
-              "executor": "@nrwl/node:webpack",
-              "outputs": [
-                "{options.outputPath}"
-              ],
+            "build-prod": {
+              "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "outputPath": "dist/apps/api",
-                "main": "apps/api/src/main.ts",
-                "tsConfig": "apps/api/tsconfig.app.json",
-                "assets": [
-                  "apps/api/src/assets"
-                ],
-                "generatePackageJson": true,
-                "externalDependencies": "all"
-              },
-              "configurations": {
-                "production": {
-                  "optimization": true,
-                  "extractLicenses": true,
-                  "inspect": false,
-                  "fileReplacements": [
-                    {
-                      "replace": "apps/api/src/environments/environment.ts",
-                      "with": "apps/api/src/environments/environment.prod.ts"
-                    }
-                  ]
-                }
-              }
-            },
-            "serve-legacy": {
-              "executor": "@nrwl/node:node",
-              "options": {
-                "buildTarget": "api:build"
+                "command": "node apps/api/scripts/build.js"
               }
             },
             "test": {
@@ -2065,11 +2036,18 @@
             },
             {
               "file": "apps/api/project.json",
-              "hash": "9b59ae6972bf9ca30fd1e3f788f7b6be1bfcde72"
+              "hash": "46cdbc321b16eb7699363f5e978aa968f7d603ea"
             },
             {
               "file": "apps/api/README.md",
-              "hash": "dfc0aee360c627dab9dddb3434f7ec46a9648bb7"
+              "hash": "c0a4b0b91c0c83cabbfcdc3d6f59b2d943f409bd"
+            },
+            {
+              "file": "apps/api/scripts/build.js",
+              "hash": "2d25a02003bc5c2aca69206fa355edb18420196e",
+              "deps": [
+                "npm:fs-extra"
+              ]
             },
             {
               "file": "apps/api/scripts/serve.js",
