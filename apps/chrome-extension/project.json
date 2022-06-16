@@ -105,6 +105,12 @@
         "jestConfig": "apps/chrome-extension/jest.config.ts",
         "passWithNoTests": true
       }
+    },
+    "typedoc": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "npx typedoc --options apps/chrome-extension/typedoc.js"
+      }
     }
   },
   "tags": []
