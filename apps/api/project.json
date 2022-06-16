@@ -43,12 +43,6 @@
         }
       }
     },
-    "serve-legacy": {
-      "executor": "@nrwl/node:node",
-      "options": {
-        "buildTarget": "api:build"
-      }
-    },
     "serve": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
