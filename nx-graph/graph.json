@@ -199,6 +199,12 @@
                 "jestConfig": "apps/chrome-extension/jest.config.ts",
                 "passWithNoTests": true
               }
+            },
+            "typedoc": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "npx typedoc --options apps/chrome-extension/typedoc.js"
+              }
             }
           },
           "tags": [],
@@ -221,7 +227,7 @@
             },
             {
               "file": "apps/chrome-extension/project.json",
-              "hash": "a587a78bd0c9ddea81f2ede1516bfdf26995f560"
+              "hash": "f6c904e097612980497baa9a567654d48ad2ada3"
             },
             {
               "file": "apps/chrome-extension/README.md",
@@ -314,6 +320,10 @@
             {
               "file": "apps/chrome-extension/tsconfig.spec.json",
               "hash": "b8a950754b6152f8b12188ac8bd1d289ccbf57ce"
+            },
+            {
+              "file": "apps/chrome-extension/typedoc.js",
+              "hash": "27a8762d07bd766d5b042ca18aeda95bbe02ceee"
             }
           ]
         }
@@ -631,6 +641,10 @@
             {
               "file": "apps/internal-client/tsconfig.spec.json",
               "hash": "b8a950754b6152f8b12188ac8bd1d289ccbf57ce"
+            },
+            {
+              "file": "apps/internal-client/typedoc.js",
+              "hash": "152feefc2c2b27de554343566c00358c9b9f7d3a"
             }
           ]
         }
