@@ -17,6 +17,9 @@ Run `npm install` to install these packages once within `apps/api` folder.
 nx run api:serve
 ```
 
+This will run a custom `serve.js` script that internally will manage
+the build and serving steps with automatic reloads.
+
 **note** there are package.json scripts, but these are from the `firebase init functions`
 and probably wont work correctly.
 
@@ -25,24 +28,10 @@ and probably wont work correctly.
 See:
 https://firebase.google.com/docs/functions/get-started
 
-### Serve-beta
-
-Currently there is a serve beta script available via:
-
-```
-nx run api:serve-beta
-```
-
-This target leverages a nodejs script that spins up the build with the
-watch flag and the emulators at the same time.
-
-This should allow for live-reloads against the functions,
-and allow for quicker development
-
-**This is untested hence why its a beta**. Once its verified that changes
-work as expected, then this will replace the current `serve` target.
-
 ### Running the emulator
+
+Generally you wont need to run the emulators manually, as the `serve` target
+handles the task internally.
 
 To run the emulators manually then use:
 
@@ -56,9 +45,26 @@ only specific emulators:
 firebase emulators:start --only=functions,firestore
 ```
 
+### Building the project
+
+There are 2 ways to build this project.
+The main tsc compile based build, and the `build-prod` variant.
+
+The "tsc build":
+
+```bash
+nx run api:build
+```
+
+The `build-prod` build:
+
+```bash
+nx run api:build-prod
+```
+
+The difference is `build-prod` will not only run `nx run api:build`, but also
+setup the `dist/api` folder to be ready to be deployed to production environments.
+
 ### Deployments
 
-Deployments could be handled locally, to bypass any lengthy deployment
-process made in github-actions. Documentation on this process will be provided,
-and there will probably
-be a script to allow for single-line deployments.
+TBD...
