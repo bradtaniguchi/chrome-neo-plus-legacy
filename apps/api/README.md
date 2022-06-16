@@ -47,12 +47,23 @@ firebase emulators:start --only=functions,firestore
 
 ### Building the project
 
+There are 2 ways to build this project.
+The main tsc compile based build, and the `build-prod` variant.
+
+The "tsc build":
+
 ```bash
-nx run api:buld
+nx run api:build
 ```
 
-Builds are currently **incomplete** and wont fully built all aspects of the cloud
-functions that are to be deployed to google cloud firebase.
+The `build-prod` build:
+
+```bash
+nx run api:build-prod
+```
+
+The difference is `build-prod` will not only run `nx run api:build`, but also
+setup the `dist/api` folder to be ready to be deployed to production environments.
 
 ### Deployments
 

@@ -1,5 +1,6 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const { copy, pathExists, readFile, writeFile } = require('fs-extra');
 
 /**
  * This helper script is used to manage the different build steps
@@ -7,12 +8,74 @@ const exec = util.promisify(require('child_process').exec);
  */
 (async () => {
   try {
+    // **Note** update this if any of the `api` projects requires
+    // new builds. This is required, otherwise the deployment/run
+    // will fail
+    const LIBS = ['apod-common', 'common'];
+
     console.log('>> building api...');
+
     await exec('nx run api:build');
-    console.log('>> built api');
-    // TODO:
-    // 1. update package.json with local files
-    // https://firebase.google.com/docs/functions/handle-dependencies#including_local_nodejs_modules
+
+    console.log('>> finished building api');
+
+    console.log('>> moving libraries into dist/apps/api/libs');
+
+    for (const lib of LIBS) {
+      const source = `dist/libs/${lib}`;
+      const target = `dist/apps/api/libs/${lib}`;
+      const [sourceExists, targetExists] = await Promise.all([
+        pathExists(source),
+        pathExists(target),
+      ]);
+      if (!sourceExists) {
+        throw new Error(`${source} does not exists, cannot copy`);
+      }
+      if (targetExists) {
+        console.log(`>> ${target} already exists, skipping`);
+        continue;
+      }
+      console.log(`>> copying ${source} to ${target}`);
+      await copy(source, target);
+
+      console.log(`>> done copying ${source} to ${target}`);
+    }
+
+    console.log('>> done moving libraries');
+
+    console.log('>> updating package.json with local builds');
+
+    const packageJson = JSON.parse(
+      (await readFile('dist/apps/api/package.json')).toString()
+    );
+
+    console.log('>> verifying libraries');
+
+    for (const lib of LIBS) {
+      const exists =
+        !!packageJson?.peerDependencies?.[`@chrome-neo-plus/${lib}`];
+      console.log(`>> library: ${lib} exists in lib: `, exists);
+      if (!exists) {
+        throw new Error(
+          `$@chrome-neo-plus/{lib} does not exist, as a peerDependency, cannot update`
+        );
+      }
+      // update the value to be prefixed with `file:<relative-path>`
+      // see: https://firebase.google.com/docs/functions/handle-dependencies#including_local_nodejs_modules
+      packageJson.peerDependencies[
+        `@chrome-neo-plus/${lib}`
+      ] = `file:libs/${lib}`;
+    }
+
+    console.log('>> updated package.json, writing back to the file');
+
+    await writeFile(
+      'dist/apps/api/package.json',
+      JSON.stringify(packageJson, null, 2)
+    );
+
+    // TODO: run sanity checks
+    // TODO: add .env
   } catch (err) {
     console.error(err);
     process.exit(1);
