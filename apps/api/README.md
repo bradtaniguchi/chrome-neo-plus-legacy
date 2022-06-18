@@ -67,4 +67,15 @@ setup the `dist/api` folder to be ready to be deployed to production environment
 
 ### Deployments
 
-TBD...
+Deployment is handled by the firebase-cli, internally this can be called
+with the following:
+
+```bash
+nx run api:deploy
+```
+
+or if this doesn't work, manually call it with:
+
+```bash
+firebase deploy --only functions
+```

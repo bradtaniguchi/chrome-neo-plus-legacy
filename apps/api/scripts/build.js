@@ -36,6 +36,23 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
 
     console.log('>> finished building api');
 
+    console.log('>> checking .env');
+
+    const envSource = 'apps/api/.env';
+    const envTarget = 'dist/apps/api/src/.env';
+
+    const envExists = await pathExists(envSource);
+
+    if (!envExists) {
+      throw new Error(`${envSource} does not exist as a source `);
+    }
+
+    console.log('>> .env exists, copying ...');
+
+    await copy(envSource, envTarget);
+
+    console.log('>> done copying .env');
+
     console.log('>> moving libraries into dist/apps/api/libs');
 
     for (const lib of LIBS) {
