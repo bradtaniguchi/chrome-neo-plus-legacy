@@ -3,7 +3,7 @@
   "sourceRoot": "apps/chrome-extension/src",
   "projectType": "application",
   "targets": {
-    "build-extension": {
+    "_build": {
       "executor": "@nrwl/web:webpack",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
@@ -46,35 +46,19 @@
         }
       }
     },
-    "build-static": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "commands": [
-          {
-            "command": "cp apps/chrome-extension/src/manifest.json dist/apps/chrome-extension/manifest.json"
-          },
-          {
-            "command": "mv dist/apps/chrome-extension/index.html dist/apps/chrome-extension/popup.html"
-          }
-        ],
-        "parallel": false
-      }
-    },
     "build": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "commands": [
-          {
-            "command": "nx run chrome-extension:build-extension"
-          },
-          {
-            "command": "nx run chrome-extension:build-static"
-          }
-        ],
-        "parallel": false
+        "command": "node apps/chrome-extension/scripts/build.js"
       }
     },
     "serve": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node apps/chrome-extension/scripts/serve.js"
+      }
+    },
+    "_serve": {
       "executor": "@nrwl/web:dev-server",
       "defaultConfiguration": "development",
       "options": {

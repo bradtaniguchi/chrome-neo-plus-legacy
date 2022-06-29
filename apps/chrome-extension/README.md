@@ -6,17 +6,21 @@ of the chrome-extension version of the chrome-neo-plus project.
 Most of the actual application code will be defined within libraries and only loaded
 here to combine them into a single deployable application.
 
-## Local Development notes
+## Building the project
 
-Developing chrome-extensions locally requires a few extra considerations.
-See these docs for more details:
-https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked
+Building the project uses a custom build.js script. Which can be ran with:
 
-Otherwise, running the normal build command:
-
-```
+```bash
 nx run chrome-extension:build
 ```
 
-will build a production version of the extension automatically. The produced
-folder can then be loaded up as an unpacked chrome extension (see above on use)
+## Serving the project
+
+Serving the project locally as an unpacked chrome-extension can be done with the following command:
+
+```bash
+nx run chrome-extension:serve
+```
+
+For more details on chrome-extension development see:
+https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked
