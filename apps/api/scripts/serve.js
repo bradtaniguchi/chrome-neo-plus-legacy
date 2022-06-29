@@ -24,7 +24,7 @@ const { copy, pathExists } = require('fs-extra');
         const nodeModulesTarget = 'dist/apps/api/node_modules';
 
         const envSource = 'apps/api/.env';
-        const envTarget = 'dist/apps/api/src/.env';
+        const envTarget = 'dist/apps/api/.env';
 
         const [
           nodeModulesSourceExists,

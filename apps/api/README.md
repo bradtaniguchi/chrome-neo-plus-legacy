@@ -28,7 +28,7 @@ and probably wont work correctly.
 See:
 https://firebase.google.com/docs/functions/get-started
 
-### Running the emulator
+### Running the emulators directly
 
 Generally you wont need to run the emulators manually, as the `serve` target
 handles the task internally.
