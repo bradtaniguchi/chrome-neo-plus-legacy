@@ -1,14 +1,41 @@
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
+const { copy, rename } = require('fs-extra');
+
 /**
- * This help script is used to build the chrome-extension for
+ * This helper script is used to build the chrome-extension for
  * production environments.
  */
 (async () => {
-  console.log('not implemented yet');
-})();
+  try {
+    console.log('>> running custom build script for chrome-extension app');
 
-// {
-//   "command": "cp apps/chrome-extension/src/manifest.json dist/apps/chrome-extension/manifest.json"
-// },
-// {
-//   "command": "mv dist/apps/chrome-extension/index.html dist/apps/chrome-extension/popup.html"
-// }
+    console.log('>> building chrome-extension app with watch-flag');
+
+    // **Note** this is the internal nx-focus "build" command
+    await exec('nx run chrome-extension:_build:production');
+
+    console.log('>> done building chrome-extension, moving manifest');
+
+    await copy(
+      'apps/chrome-extension/src/manifest.json',
+      'dist/apps/chrome-extension/manifest.json'
+    );
+
+    console.log(
+      '>> done moving manifest.json, renaming index.html to popup.html'
+    );
+
+    await rename(
+      'dist/apps/chrome-extension/index.html',
+      'dist/apps/chrome-extension/popup.html'
+    );
+
+    console.log('>> done!');
+
+    process.exit(0);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+})();
