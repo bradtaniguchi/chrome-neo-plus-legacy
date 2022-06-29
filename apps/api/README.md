@@ -50,6 +50,9 @@ firebase emulators:start --only=functions,firestore
 There are 2 ways to build this project.
 The main tsc compile based build, and the `build-prod` variant.
 
+The `build-prod` script uses a nodejs script that will setup all the files
+for a production deployment to firebase.
+
 The "tsc build":
 
 ```bash
@@ -64,6 +67,18 @@ nx run api:build-prod
 
 The difference is `build-prod` will not only run `nx run api:build`, but also
 setup the `dist/api` folder to be ready to be deployed to production environments.
+
+### Environment variables
+
+This library requires a `.env` file, this file should have only 1 variable:
+
+`API_KEY`
+
+This api key represents the NASA api key available here:
+https://api.nasa.gov/
+
+**For deployments make sure this `.env` file is at the path: `apps/api/.env`
+relative to the project root.**
 
 ### Deployments
 

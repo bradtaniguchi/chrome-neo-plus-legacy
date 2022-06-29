@@ -39,7 +39,7 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
     console.log('>> checking .env');
 
     const envSource = 'apps/api/.env';
-    const envTarget = 'dist/apps/api/src/.env';
+    const envTarget = 'dist/apps/api/.env';
 
     const envExists = await pathExists(envSource);
 
@@ -111,7 +111,6 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
     );
 
     // TODO: run sanity checks
-    // TODO: add .env
   } catch (err) {
     console.error(err);
     process.exit(1);
