@@ -1459,7 +1459,7 @@
             },
             {
               "file": "libs/apod-react/.storybook/preview.js",
-              "hash": "2c962916d983f479922058c63895ab52ec3659b4",
+              "hash": "25f977439fd4b1aaa8cf02bd8675234a196a2e54",
               "deps": [
                 "npm:firebase"
               ]
@@ -1482,7 +1482,7 @@
             },
             {
               "file": "libs/apod-react/README.md",
-              "hash": "7fd01cf41b1ca526f622a2413d6b3698bfadbc2a"
+              "hash": "812de41a147e1ec418e50e5f93c3a0a70ae168e9"
             },
             {
               "file": "libs/apod-react/src/index.ts",
@@ -1983,9 +1983,9 @@
               }
             },
             "deploy": {
-              "executor": "nx:run-script",
+              "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "script": "deploy"
+                "command": "firebase deploy --only functions"
               }
             },
             "logs": {
@@ -2050,22 +2050,22 @@
             },
             {
               "file": "apps/api/project.json",
-              "hash": "46cdbc321b16eb7699363f5e978aa968f7d603ea"
+              "hash": "24f46cb2bf2aacefc800f3cc50241063fec9faa1"
             },
             {
               "file": "apps/api/README.md",
-              "hash": "c0a4b0b91c0c83cabbfcdc3d6f59b2d943f409bd"
+              "hash": "a626187ac8296dac20899b9909f1d9f1c71237bc"
             },
             {
               "file": "apps/api/scripts/build.js",
-              "hash": "2d25a02003bc5c2aca69206fa355edb18420196e",
+              "hash": "7d8ba0513a24b51c90151c0afcc73c56fba04aca",
               "deps": [
                 "npm:fs-extra"
               ]
             },
             {
               "file": "apps/api/scripts/serve.js",
-              "hash": "35a446ae0e008809360eb9763b83f5719c3c55a8",
+              "hash": "1630dbe612f22fb06d77cc6cedbf969c6c662f66",
               "deps": [
                 "npm:fs-extra"
               ]
@@ -2080,7 +2080,7 @@
             },
             {
               "file": "apps/api/src/constants/config.ts",
-              "hash": "5b8685266336d2de8136edeb348f9fb2c2ac75c1"
+              "hash": "e97e45bd81cb3688f3afa8e755d777e14efc9076"
             },
             {
               "file": "apps/api/src/environments/environment.prod.ts",
@@ -2101,7 +2101,7 @@
             },
             {
               "file": "apps/api/src/main.ts",
-              "hash": "4419119a4249e20f7f211514018928b2bb7f4e64"
+              "hash": "1fc65b596d2474ad5de3ca3bf0f431c68ee42871"
             },
             {
               "file": "apps/api/src/models/response-wrapper.ts",
