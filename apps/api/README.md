@@ -28,7 +28,7 @@ and probably wont work correctly.
 See:
 https://firebase.google.com/docs/functions/get-started
 
-### Running the emulator
+### Running the emulators directly
 
 Generally you wont need to run the emulators manually, as the `serve` target
 handles the task internally.
@@ -50,6 +50,9 @@ firebase emulators:start --only=functions,firestore
 There are 2 ways to build this project.
 The main tsc compile based build, and the `build-prod` variant.
 
+The `build-prod` script uses a nodejs script that will setup all the files
+for a production deployment to firebase.
+
 The "tsc build":
 
 ```bash
@@ -65,6 +68,29 @@ nx run api:build-prod
 The difference is `build-prod` will not only run `nx run api:build`, but also
 setup the `dist/api` folder to be ready to be deployed to production environments.
 
+### Environment variables
+
+This library requires a `.env` file, this file should have only 1 variable:
+
+`API_KEY`
+
+This api key represents the NASA api key available here:
+https://api.nasa.gov/
+
+**For deployments make sure this `.env` file is at the path: `apps/api/.env`
+relative to the project root.**
+
 ### Deployments
 
-TBD...
+Deployment is handled by the firebase-cli, internally this can be called
+with the following:
+
+```bash
+nx run api:deploy
+```
+
+or if this doesn't work, manually call it with:
+
+```bash
+firebase deploy --only functions
+```

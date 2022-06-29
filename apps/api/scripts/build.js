@@ -12,12 +12,46 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
     // new builds. This is required, otherwise the deployment/run
     // will fail
     const LIBS = ['apod-common', 'common'];
+    const ERROR_PREFIX = '>> build.js ';
 
-    console.log('>> building api...');
+    console.log('>> running custom build script for api project');
+
+    console.log('>> verifying nested node_module exists...');
+
+    const nodeModulesExists = await pathExists('apps/api/node_modules');
+
+    if (!nodeModulesExists) {
+      console.log('>> nested node_modules not found, installing...');
+
+      await exec('cd apps/api && npm install');
+
+      console.log('>> nested node_modules installed');
+
+      await exec('pwd');
+    }
+
+    console.log('>> nested node_modules exists, building api...');
 
     await exec('nx run api:build');
 
     console.log('>> finished building api');
+
+    console.log('>> checking .env');
+
+    const envSource = 'apps/api/.env';
+    const envTarget = 'dist/apps/api/.env';
+
+    const envExists = await pathExists(envSource);
+
+    if (!envExists) {
+      throw new Error(`${envSource} does not exist as a source `);
+    }
+
+    console.log('>> .env exists, copying ...');
+
+    await copy(envSource, envTarget);
+
+    console.log('>> done copying .env');
 
     console.log('>> moving libraries into dist/apps/api/libs');
 
@@ -29,7 +63,9 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
         pathExists(target),
       ]);
       if (!sourceExists) {
-        throw new Error(`${source} does not exists, cannot copy`);
+        throw new Error(
+          `${ERROR_PREFIX}${source} does not exists, cannot copy`
+        );
       }
       if (targetExists) {
         console.log(`>> ${target} already exists, skipping`);
@@ -57,7 +93,7 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
       console.log(`>> library: ${lib} exists in lib: `, exists);
       if (!exists) {
         throw new Error(
-          `$@chrome-neo-plus/{lib} does not exist, as a peerDependency, cannot update`
+          `${ERROR_PREFIX}$@chrome-neo-plus/{lib} does not exist, as a peerDependency, cannot update`
         );
       }
       // update the value to be prefixed with `file:<relative-path>`
@@ -75,7 +111,6 @@ const { copy, pathExists, readFile, writeFile } = require('fs-extra');
     );
 
     // TODO: run sanity checks
-    // TODO: add .env
   } catch (err) {
     console.error(err);
     process.exit(1);

@@ -1,0 +1,60 @@
+# The on-release flow builds and releases all projects, regardless
+# of if they have been updated/affected or not.
+name: on-release
+on:
+  release:
+    types: [created]
+
+jobs:
+  # 1. build-api
+  # 2. build-chrome-extension
+  build-api:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/init-job
+      - run: npx nx run api:build-prod
+      - uses: actions/upload-artifact@v2
+        with:
+          name: api-build-prod
+          path: dist/apps/api
+
+  build-chrome-extension:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/init-job
+      - run: npx nx run chrome-extension:build-extension:production
+      - uses: actions/upload-artifact@v2
+        with:
+          name: chrome-extension-build-prod
+          path: dist/apps/chrome-extension
+
+  # TODO: add build for "chrome-page"
+
+  deploy:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    needs:
+      - build-api
+      - build-chrome-extension
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/init-job
+      - uses: actions/download-artifact@v2
+        with:
+          name: internal-docs
+          path: dist/apps/dist
+      - uses: actions/download-artifact@v2
+        with:
+          name: chrome-extension-build-prod
+          path: dist/apps/chrome-extension
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      - run: npx nx run chrome-extension:deploy
