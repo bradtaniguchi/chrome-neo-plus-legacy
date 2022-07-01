@@ -87,7 +87,7 @@
           "sourceRoot": "apps/chrome-extension/src",
           "projectType": "application",
           "targets": {
-            "build-extension": {
+            "_build": {
               "executor": "@nrwl/web:webpack",
               "outputs": [
                 "{options.outputPath}"
@@ -96,7 +96,7 @@
               "options": {
                 "compiler": "babel",
                 "outputPath": "dist/apps/chrome-extension",
-                "index": "apps/chrome-extension/src/index.html",
+                "index": "apps/chrome-extension/src/popup.html",
                 "baseHref": "/",
                 "main": "apps/chrome-extension/src/main.tsx",
                 "polyfills": "apps/chrome-extension/src/polyfills.ts",
@@ -134,35 +134,19 @@
                 }
               }
             },
-            "build-static": {
-              "executor": "@nrwl/workspace:run-commands",
-              "options": {
-                "commands": [
-                  {
-                    "command": "cp apps/chrome-extension/src/manifest.json dist/apps/chrome-extension/manifest.json"
-                  },
-                  {
-                    "command": "mv dist/apps/chrome-extension/index.html dist/apps/chrome-extension/popup.html"
-                  }
-                ],
-                "parallel": false
-              }
-            },
             "build": {
               "executor": "@nrwl/workspace:run-commands",
               "options": {
-                "commands": [
-                  {
-                    "command": "nx run chrome-extension:build-extension"
-                  },
-                  {
-                    "command": "nx run chrome-extension:build-static"
-                  }
-                ],
-                "parallel": false
+                "command": "node apps/chrome-extension/scripts/build.js"
               }
             },
             "serve": {
+              "executor": "@nrwl/workspace:run-commands",
+              "options": {
+                "command": "node apps/chrome-extension/scripts/serve.js"
+              }
+            },
+            "_serve": {
               "executor": "@nrwl/web:dev-server",
               "defaultConfiguration": "development",
               "options": {
@@ -227,15 +211,29 @@
             },
             {
               "file": "apps/chrome-extension/project.json",
-              "hash": "f6c904e097612980497baa9a567654d48ad2ada3"
+              "hash": "329a7a3c90a23e848475c9e09f69aa57c1deb4ce"
             },
             {
               "file": "apps/chrome-extension/README.md",
-              "hash": "bddda0763b04e639fa6b4817a7112154003499e6"
+              "hash": "76c572d01a2926a22f3535fb2c0f0a2343a77b7e"
             },
             {
               "file": "apps/chrome-extension/scripts/.gitkeep",
               "hash": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+            },
+            {
+              "file": "apps/chrome-extension/scripts/build.js",
+              "hash": "a1164ad43d411be701e91d6e0b0220581448eb54",
+              "deps": [
+                "npm:fs-extra"
+              ]
+            },
+            {
+              "file": "apps/chrome-extension/scripts/serve.js",
+              "hash": "1e95882c628aa8482de52b028754f8a1b1888693",
+              "deps": [
+                "npm:fs-extra"
+              ]
             },
             {
               "file": "apps/chrome-extension/src/app/app.module.scss",
@@ -281,10 +279,6 @@
               "hash": "317ebcb2336e0833a22dddf0ab287849f26fda57"
             },
             {
-              "file": "apps/chrome-extension/src/index.html",
-              "hash": "4e9396df797d464c7ab8736797d6ec52af4ff0a3"
-            },
-            {
               "file": "apps/chrome-extension/src/main.tsx",
               "hash": "563fabfe03cb3108ae64f0fa4de55e0ba4557b68",
               "deps": [
@@ -304,6 +298,10 @@
                 "npm:core-js",
                 "npm:regenerator-runtime"
               ]
+            },
+            {
+              "file": "apps/chrome-extension/src/popup.html",
+              "hash": "4e9396df797d464c7ab8736797d6ec52af4ff0a3"
             },
             {
               "file": "apps/chrome-extension/src/styles.scss",
