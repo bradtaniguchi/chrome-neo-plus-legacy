@@ -10,7 +10,7 @@
       "options": {
         "compiler": "babel",
         "outputPath": "dist/apps/chrome-extension",
-        "index": "apps/chrome-extension/src/index.html",
+        "index": "apps/chrome-extension/src/popup.html",
         "baseHref": "/",
         "main": "apps/chrome-extension/src/main.tsx",
         "polyfills": "apps/chrome-extension/src/polyfills.ts",

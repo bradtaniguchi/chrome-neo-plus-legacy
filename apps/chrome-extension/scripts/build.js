@@ -22,14 +22,7 @@ const { copy, rename } = require('fs-extra');
       'dist/apps/chrome-extension/manifest.json'
     );
 
-    console.log(
-      '>> done moving manifest.json, renaming index.html to popup.html'
-    );
-
-    await rename(
-      'dist/apps/chrome-extension/index.html',
-      'dist/apps/chrome-extension/popup.html'
-    );
+    console.log('>> done moving manifest.json');
 
     console.log('>> done!');
 

@@ -1,5 +1,5 @@
 const { spawn } = require('child_process');
-const { copy, rename } = require('fs-extra');
+const { copy } = require('fs-extra');
 
 /**
  * This helper script is used run the serve for the chrome-extension, via
@@ -26,14 +26,9 @@ const { copy, rename } = require('fs-extra');
           'dist/apps/chrome-extension/manifest.json'
         );
 
-        console.log(
-          '>> done moving manifest.json, renaming index.html to popup.html'
-        );
+        console.log('>> done moving manifest.json');
 
-        await rename(
-          'dist/apps/chrome-extension/index.html',
-          'dist/apps/chrome-extension/popup.html'
-        );
+        console.log('>> done!');
       }
     });
 
