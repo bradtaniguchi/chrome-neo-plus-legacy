@@ -26,7 +26,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: ./.github/actions/init-job
-      - run: npx nx run chrome-extension:build-extension:production
+      - run: npx nx run chrome-extension:build
       - uses: actions/upload-artifact@v2
         with:
           name: chrome-extension-build-prod
