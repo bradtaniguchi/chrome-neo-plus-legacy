@@ -7,10 +7,7 @@ import { initializeAppCheck, ReCaptchaV3Provider } from 'firebase/app-check';
 import App from './app/app';
 import { environment } from './environments/environment';
 
-const app = initializeApp({
-  projectId: 'chrome-neo-plus',
-  apiKey: environment.firebaseApiKey,
-});
+const app = initializeApp(environment.firebase);
 
 initializeAppCheck(app, {
   // dashboard:
@@ -20,11 +17,14 @@ initializeAppCheck(app, {
 
 export const functions = getFunctions(app);
 
-connectFunctionsEmulator(functions, 'localhost', 5001);
+if (!environment.production) {
+  connectFunctionsEmulator(functions, 'localhost', 5001);
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
+
 root.render(
   <StrictMode>
     <BrowserRouter>

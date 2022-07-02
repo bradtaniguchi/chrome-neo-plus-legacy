@@ -1,4 +1,6 @@
 const { spawn } = require('child_process');
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const { copy } = require('fs-extra');
 
 /**
@@ -13,14 +15,25 @@ const { copy } = require('fs-extra');
     console.log('>> building chrome-extension app with watch flag...');
     let initialBuildDone = false;
     // Run the following steps in parallel:
-    const build = spawn(`nx`, ['run', 'chrome-extension:_build', '--watch']);
+    const build = spawn(`nx`, [
+      'run',
+      'chrome-extension:_build:development',
+      '--watch',
+    ]);
 
     build.stdout.on('data', async (e) => {
       const output = e.toString();
       console.log(output);
       if (output.includes('webpack compiled') && !initialBuildDone) {
         initialBuildDone = true;
-        console.log('>> done building chrome-extension, moving manifest');
+        console.log('>> done building chrome-extension, building config...');
+
+        await exec(
+          'npm run build:config -- --path=dist/apps/chrome-extension/config.json'
+        );
+
+        console.log('>> done building config, moving manifest');
+
         await copy(
           'apps/chrome-extension/src/manifest.json',
           'dist/apps/chrome-extension/manifest.json'
