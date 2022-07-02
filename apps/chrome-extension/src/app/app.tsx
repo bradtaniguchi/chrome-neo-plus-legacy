@@ -1,33 +1,21 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import styles from './app.module.scss';
 
-import { Route, Routes, Link } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { ApodPage } from '@chrome-neo-plus/apod-react';
+import { DateTime } from 'luxon';
 
 export function App() {
   return (
-    <>
-      Hello World!
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <div>
-              This is the generated root route.{' '}
-              <Link to="/page-2">Click here for page 2.</Link>
-            </div>
-          }
-        />
-        <Route
-          path="/page-2"
-          element={
-            <div>
-              <Link to="/">Click here to go back to root page.</Link>
-            </div>
-          }
-        />
-      </Routes>
-      {/* END: routes */}
-    </>
+    <Routes>
+      {/* TODO: update to be lazy loaded later.
+      for now just provide the current date so we can see something
+      */}
+      <Route
+        path="/"
+        element={<ApodPage date={DateTime.now().toFormat('yyyy-MM-dd')} />}
+      />
+    </Routes>
   );
 }
 
