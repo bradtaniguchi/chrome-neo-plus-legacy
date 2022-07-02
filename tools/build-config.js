@@ -1,5 +1,8 @@
 const { promises: fs } = require('fs');
 const { readFile, writeFile, stat, mkdir } = fs;
+const yargs = require('yargs/yargs');
+const { hideBin } = require('yargs/helpers');
+const argv = yargs(hideBin(process.argv)).argv;
 
 /**
  * This script creates a dist/config.json file with some basic git meta-data.
@@ -12,9 +15,13 @@ const { readFile, writeFile, stat, mkdir } = fs;
  * ```
  * npm run build:config
  * ```
+ *
+ * Pass -- --path to change the path, otherwise defaults to dist/config.json
  */
 (async () => {
   try {
+    const path = argv.path ?? 'dist/config.json';
+    console.log('>> ', argv);
     const [version] = await Promise.all([
       readFile('package.json')
         .then(JSON.parse)
@@ -34,7 +41,7 @@ const { readFile, writeFile, stat, mkdir } = fs;
     ]);
 
     await writeFile(
-      'dist/config.json',
+      path ?? 'dist/config.json',
       JSON.stringify(
         (() => {
           const common = {
